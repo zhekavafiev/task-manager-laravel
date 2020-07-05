@@ -26,12 +26,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        if (session()->has('locale')) {
-            App::setlocale(session()->get('locale'));
-        }
-
         $user = Auth::user();
-        // dd(session());
         return view('home', compact('user'));
     }
 }
