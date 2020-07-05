@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+    if (session()->has('locale')) {
+        App::setlocale(session()->get('locale'));
+    }
     return view('welcome');
 })->name('welcome');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/language/{lang}', function ($lang) {
+    session(['locale' => $lang]);
+    return back();
+})->name('language');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/users', 'UserController@index')->name('users');
+});
