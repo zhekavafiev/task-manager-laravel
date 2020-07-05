@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,9 @@ class HomeController extends Controller
         if (session()->has('locale')) {
             App::setlocale(session()->get('locale'));
         }
-        return view('home');
+
+        $user = Auth::user();
+        // dd(session());
+        return view('home', compact('user'));
     }
 }

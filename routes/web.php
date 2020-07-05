@@ -33,4 +33,5 @@ Route::get('/language/{lang}', function ($lang) {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/users', 'UserController@index')->name('users');
+    Route::get('/users/{id}', 'UserController@show')->name('users.show');
 });

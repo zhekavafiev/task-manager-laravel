@@ -82,7 +82,7 @@
             <div class="collapse navbar-collapse" id="navbarsExample04">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('welcome') }}">@lang('header.home')<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('home') }}">@lang('header.home')<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('users') }}">@lang('header.users')<span class="sr-only">(current)</span></a>
