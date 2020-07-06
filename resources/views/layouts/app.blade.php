@@ -143,9 +143,9 @@
         @yield('content')
     </main>
 
-    <footer class="footer bg-light text-black">
+    <footer class="footer">
         <div class="container">
-            <p>hello</p>
+            <p>Produced by Evgeniy Vafiev<br><a href="#">GitHub Repo</a></p>
         </div>
     </footer>
 
