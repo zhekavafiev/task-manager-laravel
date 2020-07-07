@@ -24,5 +24,9 @@ return [
     'year' => 'Year',
     'birthday' => 'Birthday',
     'country' => 'Country',
-    'city' => 'City'
+    'city' => 'City',
+    'login' => 'Login',
+    'forgot' => 'Forgot Your Password?',
+    'remember' => 'Remember Me',
+    'wrong' => 'These credentials do not match our records.'
 ];
