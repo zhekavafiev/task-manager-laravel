@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Rollbar\Rollbar;
+use Rollbar\Payload\Level;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,10 @@ Route::get('/language/{lang}', function ($lang) {
     session(['locale' => $lang]);
     return back();
 })->name('language');
+
+Route::get('/error', function () {
+    // dd(config('services.rollbar'));
+    Rollbar::log(Level::info(), 'Test info message');
+    throw new \Exception('Test exception');
+    abort(500);
+});
