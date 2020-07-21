@@ -7,5 +7,4 @@
             {{ Form::submit('Update') }}
         {{ Form::close() }}
     </div>
-
 @endsection

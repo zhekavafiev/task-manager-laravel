@@ -23,18 +23,8 @@
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
-            
-            <!-- <a href="{{ route('task_statuses.show', $status) }}">{{ $status->name }}</a> -->
-            <!-- <form action="{{ route('task_statuses.edit', $status) }}">
-                <input type="submit" value="Edit">
-            </form> -->
-            <!-- <a href="{{ route('task_statuses.edit', $status) }}">Edit</a>
-            <a href="{{ route('task_statuses.destroy', $status) }}" data-confirm="Are you sure?" data-method="delete">Delete</a> -->
-
         </div>
-
     </div>
 @endsection
 
