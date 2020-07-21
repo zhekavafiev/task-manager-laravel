@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware(['locale'])->group(function () {
     Route::get('/', function (Request $request) {
+        Log::debug('Hello world');
         return view('welcome');
     })->name('welcome');
     Route::get('/home', 'HomeController@index')->name('home');
