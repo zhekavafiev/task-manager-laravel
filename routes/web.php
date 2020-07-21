@@ -41,3 +41,5 @@ Route::get('/error', function () {
     throw new \Exception('Test exception');
     abort(500);
 });
+
+Route::resource('/task_statuses', 'TaskStatusController');

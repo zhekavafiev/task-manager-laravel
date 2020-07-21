@@ -23,7 +23,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        SendWelcomEmail::dispatch($user);
+        // SendWelcomEmail::dispatch($user);
         // Mail::to($user)->send(new WelcomeLetter($user));
         // dd(Auth::user());
         return view('users.show', compact('user'));
