@@ -20,14 +20,4 @@ class TaskStatusTest extends TestCase
         $response->assertStatus(200);
         // dd(TaskStatus::get());
     }
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
-    {
-        $response = $this->get('/');
-        $response->assertStatus(200);
-    }
 }
