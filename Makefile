@@ -5,6 +5,7 @@ lint:
 	composer run-script phpcs -- -n --standard=PSR12 app/
 
 test:
+	php artisan config:clear 
 	php artisan test
 
 deploy:
@@ -22,3 +23,8 @@ install:
 
 test-ci:
 	composer run-script phpunit tests -- --coverage-clover ./build/logs/clover.xml
+
+clear:
+	php artisan cache:clear
+	php artisan config:cache
+	php artisan view:clear

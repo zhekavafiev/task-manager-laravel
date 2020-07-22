@@ -9,9 +9,47 @@
         <meta name="csrf-param" content="_token">
         <title>Task manager</title>
         <script src="{{ asset('js/app.js') }}"></script>
+        <!-- Bootstrap core CSS -->
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+
+            .footer-custom {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 120px;
+                /* line-height: 60px; */
+                background-color: var(--yellow);
+            }
+
+            .footer-custom > .container p{
+                color: black;
+                font-size: 10px;
+                /* padding-top: 2px; */
+            }
+
+            body {
+                margin-bottom: 100px;
+            }
+
+
+        </style>
         
         <!-- Custom styles for this template -->
-        
         <link href="{{  asset('css/app.css')  }}" rel="stylesheet">
     </head>
 
@@ -28,13 +66,14 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('users') }}">@lang('header.users')<span class="sr-only">(current)</span></a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('task_statuses.index') }}">Statuses</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li> -->
                     </ul>
+
                     <ul class="navbar-nav ml-auto">
                         
                         <!-- Set language -->
@@ -84,12 +123,11 @@
             @yield('content')
         </main>
 
-        <footer class="footer">
+        <footer class="footer-custom">
             <div class="container">
-                <p>Produced by Evgeniy Vafiev<br><a href="#">GitHub Repo</a></p>
+                <p>Produced by Evgeniy Vafiev <a href="#">GitHub Repo</a></p>
             </div>
         </footer>
-
     </body>
 
 </html>

@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-require('jquery-ujs');
+// require('jquery-ujs');
 
 // window.Vue = require('vue');
 
@@ -28,9 +28,9 @@ require('jquery-ujs');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+// const app = new Vue({
+//     el: '#app',
+// });
 
 const  ujs = require('@rails/ujs');
 ujs.start();
