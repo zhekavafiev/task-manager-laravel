@@ -1,3 +1,5 @@
+{{ Form::label('name', 'Name') }}
+{{ Form::text('name') }} <br>
 @if ($errors->any())
 <div style="Color: red">
     <ul>
@@ -7,5 +9,3 @@
     </ul>
 </div>
 @endif
-{{ Form::label('name', 'Name') }}
-{{ Form::text('name') }} <br>

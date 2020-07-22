@@ -119,6 +119,9 @@
                 </div>
             </nav>
         </header>
+        <div class="container">
+            @include('flash::message')
+        </div>
         <main role="main">
             @yield('content')
         </main>

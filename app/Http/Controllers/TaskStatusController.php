@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TaskStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskStatusController extends Controller
 {
@@ -25,6 +26,14 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
+
+        /*
+            Разобраться переделать под гейт
+        */
+        if (empty(Auth::user())) {
+            return redirect()->route('login');
+        }
+
         $status = new TaskStatus();
         return view('task_statuses.create', compact('status'));
     }
@@ -40,10 +49,11 @@ class TaskStatusController extends Controller
         $data = $this->validate($request, [
             'name' => 'required|unique:task_statuses|min:5|max:255:'
         ]);
-
+               
         $status = new TaskStatus();
         $status->fill($data);
         $status->save();
+        flash("Status {$status->name} will be added")->success();
         return redirect()->route('task_statuses.index');
     }
 
@@ -55,7 +65,7 @@ class TaskStatusController extends Controller
      */
     public function show(TaskStatus $taskStatus)
     {
-        dd($taskStatus);
+        dd(Auth::user() === null, empty(!Auth::user()));
     }
 
     /**
@@ -66,6 +76,14 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
+        /*
+            Разобраться переделать под гейт
+        */
+
+        if (empty(Auth::user())) {
+            return redirect()->route('login');
+        }
+
         $status = TaskStatus::findOrFail($taskStatus->id);
         return view('task_statuses.edit', compact('status'));
     }
@@ -82,6 +100,8 @@ class TaskStatusController extends Controller
         $data = $this->validate($request, [
             'name' => 'required|unique:task_statuses|min:5|max:255:'
         ]);
+        flash("Status name will be changed from {$taskStatus->name} to {$data['name']}")->success();
+
         $taskStatus->fill($data);
         $taskStatus->save();
         return redirect()->route('task_statuses.index');
@@ -95,6 +115,16 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
+        /*
+            Разобраться переделать под гейт
+        */
+
+        if (empty(Auth::user())) {
+            return redirect()->route('login');
+        }
+
+        flash("Statuse {$taskStatus->name} will be removed")->success();
+        
         if ($taskStatus) {
             $taskStatus->delete();
         }

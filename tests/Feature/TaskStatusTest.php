@@ -55,6 +55,7 @@ class TaskStatusTest extends TestCase
         $response = $this->patch(route('task_statuses.update', $status), $data);
         $response->assertStatus(302);
         $response->assertSessionHasNoErrors();
+        
         $this->assertDatabaseHas('task_statuses', $data);
         $this->assertDatabaseMissing('task_statuses', [$status]);
     }
