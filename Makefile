@@ -28,3 +28,6 @@ clear:
 	php artisan cache:clear
 	php artisan config:cache
 	php artisan view:clear
+
+task:
+	composer run-script phpunit tests/Feature/TaskTest

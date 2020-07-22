@@ -43,3 +43,4 @@ Route::get('/error', function () {
 });
 
 Route::resource('/task_statuses', 'TaskStatusController');
+Route::resource('/tasks', 'TaskController');

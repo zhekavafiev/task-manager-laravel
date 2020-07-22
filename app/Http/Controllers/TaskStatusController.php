@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use App\TaskStatus;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +17,11 @@ class TaskStatusController extends Controller
      */
     public function index()
     {
+        // $a = User::get();
+        
+        // factory(Task::class)->create();
+        // $a = TaskStatus::get()->pluck('id')->random();
+        // dd($a);
         $statuses = TaskStatus::get();
         return view('task_statuses.index', compact('statuses'));
     }
