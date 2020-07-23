@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        {{ Form::model($status, ['url' => route('task_statuses.store')]) }}
-            @include('task_statuses.form')
-            {{ Form::submit('click') }}
+        <h2>Create Task</h2>
+        {{ Form::model($task, ['url' => route('tasks.store')]) }}
+            @include('tasks.form')
         {{ Form::close() }}
     </div>
 @endsection

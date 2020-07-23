@@ -5,7 +5,7 @@
         <br>
         <h2>Types of Tasks</h2>
         <div style="padding-top: 20px; padding-bottom: 20px;" class="float-right">
-            <a href="#" class="btn btn-secondary btm-lg">Create new</a>
+            <a href="{{ route('tasks.create') }}" class="btn btn-secondary btm-lg">Create new</a>
             <!-- <form action="{{ route('task_statuses.create') }}">
                 <input type="submit" value="Create">
             </form> -->
@@ -27,12 +27,11 @@
                     @foreach ($tasks as $task)
                         <tr>
                             <th scope="row">{{ $task->id }}</th>
-                            <td><a href="#">{{ $task->name }}</a></td>
-                            <td>{{ $task->description }}</td>
-                            <td>{{ $task->status_id }}</td>
-                            <td>{{ $task->creator_by_id }}</td>
-                            <td>{{ $task->assigned_to_id }}</td>
-
+                            <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
+                            <td width="60%">{{ $task->description }}</td>
+                            <td nowrap>{{ $task->status->name }}</td>
+                            <td>{{ $task->creator->name}}</td>
+                            <td>{{ $task->assigner->name ?? null}}</td>
                         </tr>
                     @endforeach
                 </tbody>

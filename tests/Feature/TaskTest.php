@@ -13,24 +13,35 @@ use Tests\TestCase;
 
 class TaskTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    protected $user;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->artisan('db:seed');
-        factory(User::class)->create();
+        $this->user = factory(User::class)->create();
         factory(Task::class)->create();
     }
 
     public function testIndex()
     {
-        // dd(Task::get()->toArray());
         $response = $this->get(route('tasks.index'));
         $response->assertStatus(200);
+    }
+
+    public function testCreate()
+    {
+        $response = $this->get(route('tasks.create'));
+        $response->assertStatus(200);
+    }
+
+    public function testStore()
+    {
+        $data = factory(Task::class)->make()->toArray();
+        $response = $this
+            ->actingAs($this->user)
+            ->post(route('tasks.store', $data));
+        $response->assertStatus(302);
+        $this->assertDatabaseHas('tasks', $data);
     }
 }

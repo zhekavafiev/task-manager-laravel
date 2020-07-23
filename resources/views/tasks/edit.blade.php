@@ -2,9 +2,8 @@
 
 @section('content')
     <div class="container">
-        {{ Form::model($status, ['url' => route('task_statuses.update', $status), 'method' => 'PATCH']) }}
-            @include('task_statuses.form')
-            {{ Form::submit('Update') }}
+        {{ Form::model($task, ['url' => route('tasks.update', $task), 'method' => 'PATCH']) }}
+            @include('tasks.form')
         {{ Form::close() }}
     </div>
 @endsection

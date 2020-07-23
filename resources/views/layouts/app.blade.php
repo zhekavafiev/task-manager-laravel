@@ -10,7 +10,6 @@
         <title>Task manager</title>
         <script src="{{ asset('js/app.js') }}"></script>
         <!-- Bootstrap core CSS -->
-        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -26,26 +25,30 @@
                     font-size: 3.5rem;
                 }
             }
-
+            
             .footer-custom {
                 position: absolute;
                 bottom: 0;
                 width: 100%;
-                height: 120px;
-                /* line-height: 60px; */
-                background-color: var(--yellow);
+                height: 60px;
+                line-height: 60px;
+                background-color: #C0C0C0;
             }
 
-            .footer-custom > .container p{
-                color: black;
-                font-size: 10px;
-                /* padding-top: 2px; */
+            .footer-custom > p{
+                color: #696969;
+                font-size: 100%;
+                margin-bottom: 0;
+                margin-left: 60px;
             }
 
             body {
                 margin-bottom: 100px;
             }
 
+            .container {
+                margin: 30px;
+            }
 
         </style>
         
@@ -127,9 +130,7 @@
         </main>
 
         <footer class="footer-custom">
-            <div class="container">
-                <p>Produced by Evgeniy Vafiev <a href="#">GitHub Repo</a></p>
-            </div>
+                <p>Produced by Evgeniy Vafiev <a href="#">(GitHub Repo)</a></p>
         </footer>
     </body>
 
