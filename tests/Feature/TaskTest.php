@@ -44,4 +44,36 @@ class TaskTest extends TestCase
         $response->assertStatus(302);
         $this->assertDatabaseHas('tasks', $data);
     }
+
+    public function testUpdate()
+    {
+        $task = factory(Task::class)->create();
+
+        $newData = factory(Task::class)->make()->toArray();
+
+        $response = $this
+            ->actingAs($this->user)
+            ->patch(route('tasks.update', $task), $newData);
+
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
+        
+        $this->assertDatabaseMissing('tasks', [$task]);
+        $this->assertDatabaseHas('tasks', $newData);
+    }
+
+    public function testDestroy()
+    {
+        $task = factory(Task::class)->create();
+        
+        $response = $this
+            ->actingAs($this->user)
+            ->delete(route('tasks.destroy', $task));
+        
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
+
+        $this->assertDatabaseMissing('tasks', [$task]);
+    }
+
 }

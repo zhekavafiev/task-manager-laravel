@@ -58,7 +58,7 @@ class TaskController extends Controller
         $data = $this->validate($request, [
             'name' => 'required|max:255',
             'status_id' => 'not_in:0',
-            'description' => 'max:1000|min:50',
+            'description' => 'max:1000|min:5',
             'assigned_to_id' => 'required'
         ]);
         $task = new Task();
@@ -126,7 +126,7 @@ class TaskController extends Controller
         $data = $this->validate($request, [
             'name' => 'required|max:255',
             'status_id' => 'not_in:0',
-            'description' => 'max:1000|min:50',
+            'description' => 'max:1000|min:5',
             'assigned_to_id' => 'required',
         ]);
 
