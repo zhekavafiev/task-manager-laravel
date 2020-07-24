@@ -44,3 +44,5 @@ Route::get('/error', function () {
 
 Route::resource('/task_statuses', 'TaskStatusController');
 Route::resource('/tasks', 'TaskController');
+Route::post('/tasks/{task}/labels/newconnection', 'LabelController@newConnection')->name('tasks.labels.newconnection');
+Route::resource('/tasks.labels', 'LabelController');

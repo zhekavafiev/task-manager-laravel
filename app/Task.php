@@ -22,4 +22,9 @@ class Task extends Model
     {
         return $this->belongsTo('App\TaskStatus', 'status_id');
     }
+
+    public function label()
+    {
+        return $this->belongsToMany('App\Label');
+    }
 }

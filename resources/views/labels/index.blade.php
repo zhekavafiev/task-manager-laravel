@@ -11,12 +11,11 @@
             </form> -->
         </div>
         <div>
-            <table class="table table-bordered">
+            <table class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="column">Id</th>
                         <th scope="column">Task name</th>
-                        <th scope="column">Labels</th>
                         <th scope="column">Description</th>
                         <th scope="column">Task status</th>
                         <th scope="column">Creator</th>
@@ -29,7 +28,6 @@
                         <tr>
                             <th scope="row">{{ $task->id }}</th>
                             <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
-                            <td>@include('layouts.label')</td>
                             <td width="60%">{{ $task->description }}</td>
                             <td nowrap>{{ $task->status->name }}</td>
                             <td>{{ $task->creator->name}}</td>

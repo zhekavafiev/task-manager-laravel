@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Label;
 use App\Task;
 use App\TaskStatus;
 use App\User;
@@ -38,8 +39,16 @@ class TaskController extends Controller
             ->get();
         $getUsers = User::select('id', 'name')
             ->get();
+        $getLabels = Label::select('id', 'text')
+            ->get();
+
         $statuses[0] = 'Status';
         $users[0] = 'Assigner';
+        $labels[0] = 'Label';
+        
+        foreach ($getLabels as $label) {
+            $labels[$label->id] = $label->text;
+        }
         
         foreach ($getStatuses as $status) {
             $statuses[$status->id] = $status->name;
@@ -49,7 +58,7 @@ class TaskController extends Controller
             $users[$user->id] = $user->name;
         }
 
-        return view('tasks.create', compact('task', 'statuses', 'users'));
+        return view('tasks.create', compact('task', 'statuses', 'users', 'labels'));
     }
 
     /**
@@ -114,18 +123,27 @@ class TaskController extends Controller
             ->get();
         $getUsers = User::select('id', 'name')
             ->get();
+        $getLabels = Label::select('id', 'text')
+            ->get();
+
         $statuses[0] = 'Status';
         $users[0] = 'Assigner';
+        $labels[0] = 'Label';
         
-        foreach ($getStatuses as $status) {
-            $statuses[$status->id] = $status->name;
+        foreach ($getLabels as $label) {
+            $labels[$label->id] = $label->text;
         }
 
         foreach ($getUsers as $user) {
             $users[$user->id] = $user->name;
         }
 
-        return view('tasks.edit', compact('task', 'statuses', 'users'));
+        foreach ($getStatuses as $status) {
+            $statuses[$status->id] = $status->name;
+        }
+
+        // dd($labels);
+        return view('tasks.edit', compact('task', 'statuses', 'users', 'labels'));
     }
 
     /**
@@ -137,6 +155,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        // dd($request->input());
         if (!Gate::allows('edit-create-task')) {
             flash('You need register or log in')->error();
             return redirect()->back();
@@ -147,8 +166,9 @@ class TaskController extends Controller
             'status_id' => 'not_in:0',
             'description' => 'max:1000|min:5',
             'assigned_to_id' => 'required',
+            'label_id' => 'numeric'
         ]);
-
+        // dd($data);
         if ($data['assigned_to_id'] == 0) {
             $data['assigned_to_id'] = null;
         }

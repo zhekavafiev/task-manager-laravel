@@ -2,8 +2,6 @@
 
 @section('content')
 <div class="container">
-    <h1>Task: {{$task->name}}</h1>
-    @include('layouts.label') <br>
     <table class="table table-striped table-bordered table-sm">
         <thead class="thead-dark">
             <tr>
