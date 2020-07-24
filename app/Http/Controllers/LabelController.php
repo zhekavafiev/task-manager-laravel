@@ -59,7 +59,9 @@ class LabelController extends Controller
         $this->validate($request, [
             'label_id' => 'exists:App\Label,id'
         ]);
+        
         $label = Label::find($request->input()['label_id']);
+        
         try {
             $task->label()->attach($label);
             flash('This label was added')->success();
