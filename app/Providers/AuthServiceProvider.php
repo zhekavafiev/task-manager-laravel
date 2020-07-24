@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('edit-create-delete-status', function ($user) {
+            return $user != null;
+        });
     }
 }

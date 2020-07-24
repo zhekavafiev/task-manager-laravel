@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
 use App\TaskStatus;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class TaskStatusController extends Controller
 {
@@ -17,11 +16,6 @@ class TaskStatusController extends Controller
      */
     public function index()
     {
-        // $a = User::get();
-        
-        // factory(Task::class)->create();
-        // $a = TaskStatus::get()->pluck('id')->random();
-        // dd($a);
         $statuses = TaskStatus::get();
         return view('task_statuses.index', compact('statuses'));
     }
@@ -33,16 +27,13 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
-
-        /*
-            Разобраться переделать под гейт
-        */
-        if (empty(Auth::user())) {
-            return redirect()->route('login');
+        if (Gate::allows('edit-create-delete-status')) {
+            $status = new TaskStatus();
+            return view('task_statuses.create', compact('status'));
+        } else {
+            flash('You need register or log in')->error();
+            return redirect()->back();
         }
-
-        $status = new TaskStatus();
-        return view('task_statuses.create', compact('status'));
     }
 
     /**
@@ -53,15 +44,20 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->validate($request, [
-            'name' => 'required|unique:task_statuses|min:5|max:255:'
-        ]);
-               
-        $status = new TaskStatus();
-        $status->fill($data);
-        $status->save();
-        flash("Status {$status->name} will be added")->success();
-        return redirect()->route('task_statuses.index');
+        if (Gate::allows('edit-create-delete-status')) {
+            $data = $this->validate($request, [
+                'name' => 'required|unique:task_statuses|min:5|max:255:'
+            ]);
+                   
+            $status = new TaskStatus();
+            $status->fill($data);
+            $status->save();
+            flash("Status {$status->name} will be added")->success();
+            return redirect()->route('task_statuses.index');
+        } else {
+            flash('You need register or log in')->error();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -83,16 +79,13 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
-        /*
-            Разобраться переделать под гейт
-        */
-
-        if (empty(Auth::user())) {
-            return redirect()->route('login');
+        if (Gate::allows('edit-create-delete-status')) {
+            $status = TaskStatus::findOrFail($taskStatus->id);
+            return view('task_statuses.edit', compact('status'));
+        } else {
+            flash('You need register or log in')->error();
+            return redirect()->back();
         }
-
-        $status = TaskStatus::findOrFail($taskStatus->id);
-        return view('task_statuses.edit', compact('status'));
     }
 
     /**
@@ -104,14 +97,19 @@ class TaskStatusController extends Controller
      */
     public function update(Request $request, TaskStatus $taskStatus)
     {
-        $data = $this->validate($request, [
-            'name' => 'required|unique:task_statuses|min:5|max:255:'
-        ]);
-        flash("Status name will be changed from {$taskStatus->name} to {$data['name']}")->success();
-
-        $taskStatus->fill($data);
-        $taskStatus->save();
-        return redirect()->route('task_statuses.index');
+        if (Gate::allows('edit-create-delete-status')) {
+            $data = $this->validate($request, [
+                'name' => 'required|unique:task_statuses|min:5|max:255:'
+            ]);
+            flash("Status name will be changed from {$taskStatus->name} to {$data['name']}")->success();
+    
+            $taskStatus->fill($data);
+            $taskStatus->save();
+            return redirect()->route('task_statuses.index');
+        } else {
+            flash('You need register or log in')->error();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -122,20 +120,17 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        /*
-            Разобраться переделать под гейт
-        */
-
-        if (empty(Auth::user())) {
-            return redirect()->route('login');
-        }
-
-        flash("Statuse {$taskStatus->name} will be removed")->success();
+        if (Gate::allows('edit-create-delete-status')) {
+            flash("Statuse {$taskStatus->name} will be removed")->success();
         
-        if ($taskStatus) {
-            $taskStatus->delete();
+            if ($taskStatus) {
+                $taskStatus->delete();
+            }
+    
+            return redirect()->route('task_statuses.index');
+        } else {
+            flash('You need register or log in')->error();
+            return redirect()->back();
         }
-
-        return redirect()->route('task_statuses.index');
     }
 }

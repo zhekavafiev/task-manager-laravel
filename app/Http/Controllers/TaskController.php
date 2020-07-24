@@ -133,7 +133,6 @@ class TaskController extends Controller
         if ($data['assigned_to_id'] == 0) {
             $data['assigned_to_id'] = null;
         }
-        // dd($data, $task);
         $task->fill($data);
         $task->save();
         flash("Task {$task->name} will be updated")->success();
@@ -152,7 +151,6 @@ class TaskController extends Controller
             flash("Task {$task->name} will be deleted");
             $task->delete();
         }
-        // dd($task);
         return redirect()->route('tasks.index');
     }
 }

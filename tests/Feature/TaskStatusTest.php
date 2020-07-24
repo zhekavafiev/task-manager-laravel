@@ -60,7 +60,9 @@ class TaskStatusTest extends TestCase
         $status = factory(TaskStatus::class)->create();
         $data = ['name' => 'Example'];
         $this->withoutMiddleware();
-        $response = $this->patch(route('task_statuses.update', $status), $data);
+        $response = $this
+            ->actingAs($this->user)
+            ->patch(route('task_statuses.update', $status), $data);
         $response->assertStatus(302);
         $response->assertSessionHasNoErrors();
         

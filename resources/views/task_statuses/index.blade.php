@@ -6,6 +6,8 @@
         <h2>Types of Tasks</h2>
         <div style="padding-top: 20px; padding-bottom: 20px;" class="float-right">
             <a href="{{ route('task_statuses.create') }}" class="btn btn-secondary btm-lg">Create new</a>
+            <a href="{{ route('task_statuses.create') }}" class="btn btn-secondary btm-lg disabled" aria-disabled="true">Create new</a>
+
             <!-- <form action="{{ route('task_statuses.create') }}">
                 <input type="submit" value="Create">
             </form> -->

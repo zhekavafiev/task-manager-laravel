@@ -3,12 +3,7 @@
 namespace Tests\Feature;
 
 use App\Task;
-use App\TaskStatus;
 use App\User;
-use DatabaseSeeder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 class TaskTest extends TestCase
@@ -45,6 +40,13 @@ class TaskTest extends TestCase
         $this->assertDatabaseHas('tasks', $data);
     }
 
+    public function testEdit()
+    {
+        $task = factory(Task::class)->create();
+        $response = $this->get(route('tasks.edit', $task));
+        $response->assertOk();
+    }
+
     public function testUpdate()
     {
         $task = factory(Task::class)->create();
@@ -75,5 +77,4 @@ class TaskTest extends TestCase
 
         $this->assertDatabaseMissing('tasks', [$task]);
     }
-
 }
