@@ -28,5 +28,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('edit-create-delete-status', function ($user) {
             return $user != null;
         });
+
+        Gate::define('edit-create-task', function ($user) {
+            return $user != null;
+        });
+
+        Gate::define('delete-task', function ($user, $task) {
+            return $user->id === $task->creator_by_id;
+        });
     }
 }

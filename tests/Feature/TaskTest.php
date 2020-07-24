@@ -26,7 +26,9 @@ class TaskTest extends TestCase
 
     public function testCreate()
     {
-        $response = $this->get(route('tasks.create'));
+        $response = $this
+            ->actingAs($this->user)
+            ->get(route('tasks.create'));
         $response->assertStatus(200);
     }
 
@@ -43,7 +45,9 @@ class TaskTest extends TestCase
     public function testEdit()
     {
         $task = factory(Task::class)->create();
-        $response = $this->get(route('tasks.edit', $task));
+        $response = $this
+            ->actingAs($this->user)
+            ->get(route('tasks.edit', $task));
         $response->assertOk();
     }
 

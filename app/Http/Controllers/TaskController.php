@@ -7,6 +7,7 @@ use App\TaskStatus;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -28,6 +29,10 @@ class TaskController extends Controller
      */
     public function create()
     {
+        if (!Gate::allows('edit-create-task')) {
+            flash('You need register or log in')->error();
+            return redirect()->back();
+        }
         $task = new Task();
         $getStatuses = TaskStatus::select('id', 'name')
             ->get();
@@ -55,6 +60,11 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('edit-create-task')) {
+            flash('You need register or log in')->error();
+            return redirect()->back();
+        }
+
         $data = $this->validate($request, [
             'name' => 'required|max:255',
             'status_id' => 'not_in:0',
@@ -84,7 +94,6 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        // dd($task);
         return view('tasks.show', compact('task'));
     }
 
@@ -96,6 +105,11 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
+        if (!Gate::allows('edit-create-task')) {
+            flash('You need register or log in')->error();
+            return redirect()->back();
+        }
+
         $getStatuses = TaskStatus::select('id', 'name')
             ->get();
         $getUsers = User::select('id', 'name')
@@ -123,6 +137,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        if (!Gate::allows('edit-create-task')) {
+            flash('You need register or log in')->error();
+            return redirect()->back();
+        }
+
         $data = $this->validate($request, [
             'name' => 'required|max:255',
             'status_id' => 'not_in:0',
@@ -147,10 +166,15 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        if ($task) {
-            flash("Task {$task->name} will be deleted");
-            $task->delete();
+        if (Gate::allows('delete-task', $task)) {
+            if ($task) {
+                flash("Task {$task->name} will be deleted");
+                $task->delete();
+            }
+            return redirect()->route('tasks.index');
+        } else {
+            flash('You need register or log in or this task wos not created by you')->error();
+            return redirect()->back();
         }
-        return redirect()->route('tasks.index');
     }
 }
