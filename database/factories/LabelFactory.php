@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Label::class, function (Faker $faker) {
     return [
-        //
+        'text' => $faker->text(5, 7),
     ];
 });

@@ -31,3 +31,5 @@ clear:
 
 task:
 	composer run-script phpunit tests/Feature/TaskTest
+label:
+	composer run-script phpunit tests/Feature/LabelTest

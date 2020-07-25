@@ -10,6 +10,42 @@
                 <input type="submit" value="Create">
             </form> -->
         </div>
+
+        <div>
+            {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
+                <select name="filter[status]" id="">
+                    <option value="0">Null</option>
+                    @foreach ($statuses as $status)
+                        <option value="{{ $status->id }}">{{$status->name}}</option>
+                    @endforeach
+                </select>
+
+                <select name="filter[creator]" id="">
+                    <option value="0">Null</option>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+
+                <select name="filter[assigner]" id="">
+                    <option value="0">Null</option>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}">{{$user->name}}</option>
+                    @endforeach
+                </select>
+
+                <!-- <select name="assigned_to_id" id="">
+                    @foreach ($labels as $label)
+                        <option value="{{ $label->id }}">{{$label->text}}</option>
+                    @endforeach
+                </select> -->
+
+                {{ Form::submit('Click') }}
+            {{ Form::close() }}
+            {{ Form::open(['url' => route('tasks.index')]) }}
+                {{ Form::submit('Unfilter') }}
+            {{ Form::close() }}
+        </div>
         <div>
             <table class="table table-bordered">
                 <thead class="thead-dark">
@@ -41,4 +77,3 @@
         </div>
     </div>
 @endsection
-

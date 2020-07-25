@@ -122,14 +122,11 @@
                         </li>
                         @endguest
                     </ul>
-
                 </div>
             </nav>
         </header>
-        <div class="container">
-            @include('flash::message')
-        </div>
         <main role="main">
+            @include('flash::message')
             @yield('content')
         </main>
 
