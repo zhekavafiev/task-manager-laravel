@@ -2,50 +2,53 @@
 
 @section('content')
     <div class="container">
-        <br>
         <h2>Tasks</h2>
-        <div style="padding-top: 20px; padding-bottom: 20px;" class="float-right">
-            <a href="{{ route('tasks.create') }}" class="btn btn-secondary btm-lg">Create new</a>
-            <!-- <form action="{{ route('task_statuses.create') }}">
-                <input type="submit" value="Create">
-            </form> -->
-        </div>
-
+        
         <div>
-            {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
-                <select name="filter[status]" id="">
-                    <option value="0">Null</option>
-                    @foreach ($statuses as $status)
-                        <option value="{{ $status->id }}">{{$status->name}}</option>
-                    @endforeach
-                </select>
+            <div style="padding-top: 20px; padding-bottom: 20px;" class="float-right">
+                <a href="{{ route('tasks.create') }}" class="btn btn-secondary btm-lg">Create new</a>
+                <!-- <form action="{{ route('task_statuses.create') }}">
+                    <input type="submit" value="Create">
+                </form> -->
+            </div>
 
-                <select name="filter[creator]" id="">
-                    <option value="0">Null</option>
-                    @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{$user->name}}</option>
-                    @endforeach
-                </select>
+            <div style="padding-top: 20px">
+                    {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
+                        <select name="filter[status]" id="">
+                            <option value="0">Null</option>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status->id }}">{{$status->name}}</option>
+                            @endforeach
+                        </select>
 
-                <select name="filter[assigner]" id="">
-                    <option value="0">Null</option>
-                    @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{$user->name}}</option>
-                    @endforeach
-                </select>
+                        <select name="filter[creator]" id="">
+                            <option value="0">Null</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{$user->name}}</option>
+                            @endforeach
+                        </select>
 
-                <!-- <select name="assigned_to_id" id="">
-                    @foreach ($labels as $label)
-                        <option value="{{ $label->id }}">{{$label->text}}</option>
-                    @endforeach
-                </select> -->
+                        <select name="filter[assigner]" id="">
+                            <option value="0">Null</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{$user->name}}</option>
+                            @endforeach
+                        </select>
 
-                {{ Form::submit('Click') }}
-            {{ Form::close() }}
-            {{ Form::open(['url' => route('tasks.index')]) }}
-                {{ Form::submit('Unfilter') }}
-            {{ Form::close() }}
-        </div>
+                    <!-- <select name="assigned_to_id" id="">
+                        @foreach ($labels as $label)
+                            <option value="{{ $label->id }}">{{$label->text}}</option>
+                        @endforeach
+                    </select> -->
+                    <!-- <button type="reset">hyrbgvfcdx</button> -->
+                        {{ Form::submit('Click') }}
+                    {{ Form::close() }}
+
+                    {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
+                        {{ Form::submit('Unfilter') }}
+                    {{ Form::close() }}
+            </div>
+        <div>
         <div>
             <table class="table table-bordered">
                 <thead class="thead-dark">
