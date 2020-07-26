@@ -71,7 +71,7 @@
                         <tr>
                             <th scope="row">{{ $task->id }}</th>
                             <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
-                            <td>@include('layouts.label')</td>
+                            <td width="20%">@include('layouts.label')</td>
                             <td width="60%">{{ $task->description }}</td>
                             <td nowrap>{{ $task->status->name }}</td>
                             <td>{{ $task->creator->name}}</td>

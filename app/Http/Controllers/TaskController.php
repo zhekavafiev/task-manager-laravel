@@ -22,10 +22,6 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $task = Task::whereHas('label', function ($q) {
-            $q->where('text', 'Normal');
-        })->get();
-        // dd($task);
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters([
                 AllowedFilter::exact('status', 'status_id')->ignore(0),

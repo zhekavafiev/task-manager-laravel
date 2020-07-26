@@ -41,6 +41,20 @@ Route::get('/error', function () {
     abort(500);
 });
 
+Route::get('/test', function () {
+    $types = [
+        'primary',
+        'secondary',
+        'success',
+        'danger',
+        'warning',
+        'info',
+        'light',
+        'dark'
+    ];
+    return view('test', compact('types'));
+});
+
 Route::resource('/task_statuses', 'TaskStatusController');
 Route::resource('/tasks', 'TaskController');
 Route::get('labels/index', 'LabelController@adminIndex')->name('labels.adminIndex');

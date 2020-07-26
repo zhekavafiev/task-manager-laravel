@@ -2,19 +2,25 @@
     @foreach ($task->label as $label)
         <div class="col">
             {{ Form::open(['url' => route('tasks.labels.destroy', [$task, $label])]) }}
-                <input type="button" style="margin-bottom: 5px; text-align: center; font-size: 0.7vw; width: 20%; height: 5%; background: {{ $label->color }}; color: {{ $label->text_color }};" value="{{$label->text}}"> <br>
-                <a href="{{ route('tasks.labels.destroy', [$task, $label]) }}" class="btn btn-secondary btn-sm" data-confirm="Are you sure?" data-method="delete">Delete</a>
+                <a href="{{ route('tasks.labels.destroy', [$task, $label]) }}" data-confirm="Are you sure?" data-method="delete" style="color: black" type="button" class="btn btn-{{$label->color}} btn-sm ">{{$label->text}}</a> <br>
             {{ Form::close() }}
         </div>
     @endforeach
     <div class="col">
         {{ Form::model($task, ['url' => route('tasks.labels.newconnection', $task)]) }}
-            <select name="label_id" id="">
-                @foreach ($labels as $label)
-                    <option value="{{ $label->id }}">{{ $label->text }}</option>
-                @endforeach
-            </select> <br>
-            {{ Form::submit('Click', ['class' => "btn btn-secondary btn-sm"]) }}
+        <div class="row">
+            <div calss="col">
+                <select class="form-control form-control-sm" name="label_id" id="">
+                    @foreach ($labels as $label)
+                        <option value="{{ $label->id }}">{{ $label->text }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div calss="col">
+                {{ Form::submit('Add', ['class' => "btn btn-secondary btn-sm"]) }}
+            </div>
+        </div>
         {{ Form::close() }}
     </div>
     <div class="col">

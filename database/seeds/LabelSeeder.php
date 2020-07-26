@@ -13,9 +13,9 @@ class LabelSeeder extends Seeder
     public function run()
     {
         $labels = [
-            ['green', 'black', 'Good'],
-            ['red', 'black', 'Bad'],
-            ['yellow', 'black', 'Normal']
+            ['success', 'white', 'Verified'],
+            ['danger', 'white', 'Bugs'],
+            ['warning', 'white', 'Check']
         ];
 
         foreach ($labels as [$color, $textColor, $text]) {
