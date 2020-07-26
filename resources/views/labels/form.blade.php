@@ -7,7 +7,6 @@
     </ul>
 </div>
 @endif
-<!-- обходим возврат данных при непрошедшей валидации -->
 <div class="form-row">
     <div class="col">
         {{ Form::label('Text') }}

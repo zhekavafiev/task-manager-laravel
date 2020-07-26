@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Label;
 use App\Task;
-use App\TaskStatus;
 use App\User;
 use Tests\TestCase;
 
@@ -47,6 +46,38 @@ class LabelTest extends TestCase
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();
 
+        $this->assertEmpty($this->task->label);
+    }
+
+    public function testIndexAdmin()
+    {
+        $user = factory(User::class)->create(['email' => 'admin@admin.admin']);
+        $response = $this
+            ->actingAs($user)
+            ->get(route('labels.adminIndex'));
+        $response->assertOk();
+        $response->assertSessionHasNoErrors();
+
+        $response = $this
+            ->actingAs($this->user)
+            ->get(route('labels.adminIndex'));
+        $response->assertRedirect();
+    }
+
+    public function testDestroyAdmin()
+    {
+        $user = factory(User::class)->create(['email' => 'admin@admin.admin']);
+        $label = factory(Label::class)->create();
+        $this->task->label()->attach($label);
+
+        $response = $this
+            ->actingAs($user)
+            ->delete(route('labels.adminDestroy', $label));
+
+        $response->assertRedirect();
+        $response->assertSessionHasNoErrors();
+
+        $this->assertDatabaseMissing('labels', $label->toArray());
         $this->assertEmpty($this->task->label);
     }
 }

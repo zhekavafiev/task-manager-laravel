@@ -5,10 +5,32 @@ namespace App\Http\Controllers;
 use App\Label;
 use App\Task;
 use Exception;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class LabelController extends Controller
 {
+    public function adminIndex()
+    {
+        if (Gate::allows('admin')) {
+            $labels = Label::get();
+            return view('labels.index', compact('labels'));
+        }
+        flash('You don\'t have enough rights for visit this page')->error();
+        return redirect()->route('tasks.index');
+    }
+
+    public function adminDestroy(Label $label)
+    {
+        if (Gate::allows('admin')) {
+            $label->task()->detach();
+            $label->delete();
+            return redirect()->route('labels.adminIndex');
+        }
+
+        flash('You don\'t have enough rights for visit this page')->error();
+        return redirect()->route('tasks.index');
+    }
 
     /**
      * Show the form for creating a new resource.

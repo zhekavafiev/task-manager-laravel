@@ -36,7 +36,6 @@ Route::get('/language/{lang}', function ($lang) {
 })->name('language');
 
 Route::get('/error', function () {
-    // dd(config('services.rollbar'));
     Rollbar::log(Level::info(), 'Test info message');
     throw new \Exception('Test exception');
     abort(500);
@@ -44,5 +43,7 @@ Route::get('/error', function () {
 
 Route::resource('/task_statuses', 'TaskStatusController');
 Route::resource('/tasks', 'TaskController');
+Route::get('labels/index', 'LabelController@adminIndex')->name('labels.adminIndex');
+Route::delete('labels/{label}/destroy', 'LabelController@adminDestroy')->name('labels.adminDestroy');
 Route::post('/tasks/{task}/labels/newconnection', 'LabelController@newConnection')->name('tasks.labels.newconnection');
 Route::resource('/tasks.labels', 'LabelController');
