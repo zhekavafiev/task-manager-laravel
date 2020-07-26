@@ -21,11 +21,6 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request);
-        // $users = QueryBuilder::for(User::class)
-        //     ->allowedFilters('id')
-        //     ->get();
-        // dd($users);
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters([
                 AllowedFilter::exact('status', 'status_id')->ignore(0),
@@ -33,10 +28,8 @@ class TaskController extends Controller
                 AllowedFilter::exact('assigner', 'assigned_to_id')->ignore(0)
             ])
             ->get();
-        // dd($tasks);
         $statuses = TaskStatus::get();
         $users = User::get();
-        // $tasks = Task::get();
         $labels = Label::get();
         return view('tasks.index', compact('tasks', 'statuses', 'users', 'labels'));
     }
@@ -57,16 +50,16 @@ class TaskController extends Controller
             ->get();
         $getUsers = User::select('id', 'name')
             ->get();
-        $getLabels = Label::select('id', 'text')
-            ->get();
+        // $getLabels = Label::select('id', 'text')
+        //     ->get();
 
         $statuses[0] = 'Status';
         $users[0] = 'Assigner';
-        $labels[0] = 'Label';
-        
-        foreach ($getLabels as $label) {
-            $labels[$label->id] = $label->text;
-        }
+        // $labels[0] = 'Label';
+        $labels = Label::get();
+        // foreach ($getLabels as $label) {
+        //     $labels[$label->id] = $label->text;
+        // }
         
         foreach ($getStatuses as $status) {
             $statuses[$status->id] = $status->name;
@@ -92,13 +85,18 @@ class TaskController extends Controller
             return redirect()->back();
         }
 
-        $data = $this->validate($request, [
+        $this->validate($request, [
             'name' => 'required|max:255',
             'status_id' => 'not_in:0',
             'description' => 'max:1000|min:5',
             'assigned_to_id' => 'required'
+            // add label_id rfom App\Label
         ]);
+
+        $data = $request->input();
+        $labelId = $data['label_id'] ?? null;
         $task = new Task();
+        $label = Label::find($labelId);
         $task->fill($data);
         $task->creator()->associate(Auth::user());
 
@@ -108,6 +106,8 @@ class TaskController extends Controller
             $task->assigned_to_id = null;
         }
         $task->save();
+        $task->label()->attach($label);
+
 
         flash("Task {$task->nane} will be added")->success();
         return redirect()->route('tasks.index');
@@ -160,7 +160,6 @@ class TaskController extends Controller
             $statuses[$status->id] = $status->name;
         }
 
-        // dd($labels);
         return view('tasks.edit', compact('task', 'statuses', 'users', 'labels'));
     }
 
@@ -186,7 +185,6 @@ class TaskController extends Controller
             'assigned_to_id' => 'required',
             'label_id' => 'numeric'
         ]);
-        // dd($data);
         if ($data['assigned_to_id'] == 0) {
             $data['assigned_to_id'] = null;
         }
@@ -206,7 +204,8 @@ class TaskController extends Controller
     {
         if (Gate::allows('delete-task', $task)) {
             if ($task) {
-                flash("Task {$task->name} will be deleted");
+                flash("Task {$task->name} will be deleted")->success();
+                $task->label()->detach();
                 $task->delete();
             }
             return redirect()->route('tasks.index');

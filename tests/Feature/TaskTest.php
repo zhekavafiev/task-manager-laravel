@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Label;
 use App\Task;
 use App\User;
 use Tests\TestCase;

@@ -3,52 +3,55 @@
 @section('content')
     <div class="container">
         <h2>Tasks</h2>
-        
-        <div>
-            <div style="padding-top: 20px; padding-bottom: 20px;" class="float-right">
-                <a href="{{ route('tasks.create') }}" class="btn btn-secondary btm-lg">Create new</a>
-                <!-- <form action="{{ route('task_statuses.create') }}">
-                    <input type="submit" value="Create">
-                </form> -->
-            </div>
-
-            <div style="padding-top: 20px">
-                    {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
+            <div style="padding-top: 10px; padding-bottom: 10px" class="row">
+                
+                <div class="col md-col-8">
+                {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
                         <select name="filter[status]" id="">
-                            <option value="0">Null</option>
+                            <option value="0">Status</option>
                             @foreach ($statuses as $status)
                                 <option value="{{ $status->id }}">{{$status->name}}</option>
                             @endforeach
                         </select>
 
                         <select name="filter[creator]" id="">
-                            <option value="0">Null</option>
+                            <option value="0">Creator</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{$user->name}}</option>
                             @endforeach
                         </select>
 
                         <select name="filter[assigner]" id="">
-                            <option value="0">Null</option>
+                            <option value="0">Assigner</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{$user->name}}</option>
                             @endforeach
                         </select>
 
-                    <!-- <select name="assigned_to_id" id="">
-                        @foreach ($labels as $label)
-                            <option value="{{ $label->id }}">{{$label->text}}</option>
-                        @endforeach
-                    </select> -->
-                    <!-- <button type="reset">hyrbgvfcdx</button> -->
-                        {{ Form::submit('Click') }}
+                        <!-- <select name="filter[labels]" id="">
+                            <option value="0">Label</option>
+                            @foreach ($labels as $label)
+                                <option value="{{ $label->id }}">{{$label->text}}</option>
+                            @endforeach
+                        </select> -->
+
+                        {{ Form::submit('Filter', ['class' => 'btn btn-secondary']) }}
                     {{ Form::close() }}
 
-                    {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
-                        {{ Form::submit('Unfilter') }}
-                    {{ Form::close() }}
+                    <div>
+                        {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
+                            {{ Form::submit('Unfilter', ['class' => 'btn btn-secondary btm-sm']) }}
+                        {{ Form::close() }}
+                    </div>
+
+                </div>
+
+                <div class="col col-md-4">
+                        <div>
+                            <a href="{{ route('tasks.create') }}" class="btn btn-secondary btm-lg float-right">Create new</a>
+                        </div>
+                </div>
             </div>
-        <div>
         <div>
             <table class="table table-bordered">
                 <thead class="thead-dark">
@@ -77,6 +80,6 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
     </div>
 @endsection
+
