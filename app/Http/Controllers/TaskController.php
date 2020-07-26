@@ -6,6 +6,7 @@ use App\Label;
 use App\Task;
 use App\TaskStatus;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -21,11 +22,20 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        $task = Task::whereHas('label', function ($q) {
+            $q->where('text', 'Normal');
+        })->get();
+        // dd($task);
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters([
                 AllowedFilter::exact('status', 'status_id')->ignore(0),
                 AllowedFilter::exact('creator', 'creator_by_id')->ignore(0),
-                AllowedFilter::exact('assigner', 'assigned_to_id')->ignore(0)
+                AllowedFilter::exact('assigner', 'assigned_to_id')->ignore(0),
+                AllowedFilter::callback('label', function (Builder $q, $value) {
+                    $q->whereHas('label', function ($q) use ($value) {
+                        $q->where('id', $value);
+                    });
+                })->ignore(0)
             ])
             ->get();
         $statuses = TaskStatus::get();
@@ -46,28 +56,9 @@ class TaskController extends Controller
             return redirect()->back();
         }
         $task = new Task();
-        $getStatuses = TaskStatus::select('id', 'name')
-            ->get();
-        $getUsers = User::select('id', 'name')
-            ->get();
-        // $getLabels = Label::select('id', 'text')
-        //     ->get();
-
-        $statuses[0] = 'Status';
-        $users[0] = 'Assigner';
-        // $labels[0] = 'Label';
+        $statuses = TaskStatus::get();
+        $users = User::get();
         $labels = Label::get();
-        // foreach ($getLabels as $label) {
-        //     $labels[$label->id] = $label->text;
-        // }
-        
-        foreach ($getStatuses as $status) {
-            $statuses[$status->id] = $status->name;
-        }
-
-        foreach ($getUsers as $user) {
-            $users[$user->id] = $user->name;
-        }
 
         return view('tasks.create', compact('task', 'statuses', 'users', 'labels'));
     }
@@ -90,7 +81,6 @@ class TaskController extends Controller
             'status_id' => 'not_in:0',
             'description' => 'max:1000|min:5',
             'assigned_to_id' => 'required'
-            // add label_id rfom App\Label
         ]);
 
         $data = $request->input();
@@ -137,29 +127,10 @@ class TaskController extends Controller
             return redirect()->back();
         }
 
-        $getStatuses = TaskStatus::select('id', 'name')
-            ->get();
-        $getUsers = User::select('id', 'name')
-            ->get();
-        $getLabels = Label::select('id', 'text')
-            ->get();
-
-        $statuses[0] = 'Status';
-        $users[0] = 'Assigner';
-        $labels[0] = 'Label';
-        
-        foreach ($getLabels as $label) {
-            $labels[$label->id] = $label->text;
-        }
-
-        foreach ($getUsers as $user) {
-            $users[$user->id] = $user->name;
-        }
-
-        foreach ($getStatuses as $status) {
-            $statuses[$status->id] = $status->name;
-        }
-
+        $statuses = TaskStatus::get();
+        $users = User::get();
+        $labels = Label::get();
+        // dd($labels);
         return view('tasks.edit', compact('task', 'statuses', 'users', 'labels'));
     }
 

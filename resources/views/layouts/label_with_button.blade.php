@@ -4,13 +4,17 @@
             {{ Form::open(['url' => route('tasks.labels.destroy', [$task, $label])]) }}
                 <input type="button" style="margin-bottom: 5px; text-align: center; font-size: 0.7vw; width: 20%; height: 5%; background: {{ $label->color }}; color: {{ $label->text_color }};" value="{{$label->text}}"> <br>
                 <a href="{{ route('tasks.labels.destroy', [$task, $label]) }}" class="btn btn-secondary btn-sm" data-confirm="Are you sure?" data-method="delete">Delete</a>
-                {{ Form::close() }}
+            {{ Form::close() }}
         </div>
     @endforeach
     <div class="col">
         {{ Form::model($task, ['url' => route('tasks.labels.newconnection', $task)]) }}
-            {{ Form::select('label_id', $labels) }} <br>
-            {{ Form::submit('Add label', ['class' => 'btn btn-secondary btn-sm']) }}
+            <select name="label_id" id="">
+                @foreach ($labels as $label)
+                    <option value="{{ $label->id }}">{{ $label->text }}</option>
+                @endforeach
+            </select> <br>
+            {{ Form::submit('Click', ['class' => "btn btn-secondary btn-sm"]) }}
         {{ Form::close() }}
     </div>
     <div class="col">

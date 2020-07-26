@@ -28,12 +28,12 @@
                             @endforeach
                         </select>
 
-                        <!-- <select name="filter[labels]" id="">
+                        <select name="filter[label]" id="">
                             <option value="0">Label</option>
                             @foreach ($labels as $label)
                                 <option value="{{ $label->id }}">{{$label->text}}</option>
                             @endforeach
-                        </select> -->
+                        </select>
 
                         {{ Form::submit('Filter', ['class' => 'btn btn-secondary']) }}
                     {{ Form::close() }}

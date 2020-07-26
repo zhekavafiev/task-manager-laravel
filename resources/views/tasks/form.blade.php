@@ -9,28 +9,24 @@
 @endif
 
 <div class="row">
-    <div class="col">
+    <div class="col col-md-3">
         {{ Form::label('name', 'Task name') }} <br>
         {{ Form::text('name') }} <br>
+        <select name="status_id" id="">
+            @foreach ($statuses as $status)
+                <option value="{{$status->id}}">{{ $status->name }}</option>
+            @endforeach
+        </select>
+
+        <select name="assigned_to_id" id="">
+            <option value="0">Assigner</option>
+            @foreach ($users as $user)
+                <option value="{{$user->id}}">{{ $user->name }}</option>
+            @endforeach
+        </select>
         {{ Form::label('Task description') }}
         {{ Form::textarea('description') }}
     </div>
-
-    <div class="col">
-    </div>
-
-    <div class="col">
-        {{ Form::label('status_id', 'Status') }} <br>
-        {{ Form::select('status_id', $statuses, $statuses[1], ['class' => 'form-control form-control-sm']) }} <br>
-
-        {{ Form::label('Assigner') }} <br>
-        {{ Form::select('assigned_to_id', $users, null, ['class' => 'form-control form-control-sm']) }} <br>
-
-    </div>
-   
-    <div class="col">
-    </div>
-
 </div>
 
 <br>
