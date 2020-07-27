@@ -66,7 +66,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // dd($data);
         $user = User::create([
             'name' => $data['name'],
             'second_name' => $data['second_name'],
@@ -78,9 +77,6 @@ class RegisterController extends Controller
         ]);
         
         SendWelcomEmail::dispatch($user);
-        
-        // dd($user->id);
-        
         return $user;
     }
 }

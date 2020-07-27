@@ -10,6 +10,7 @@
         <p>
             <a href="{{route('login')}}" class="btn btn-primary my-2">@lang('header.login')</a>
             <a href="{{route('register')}}" class="btn btn-secondary my-2">@lang('header.register')</a>
+            <a href="{{route('tasks.index')}}" class="btn btn-primary my-2">@lang('content.start')</a>
         </p>
     </div>
 </section>

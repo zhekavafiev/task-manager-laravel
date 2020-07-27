@@ -17,47 +17,33 @@ use Rollbar\Payload\Level;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['locale'])->group(function () {
-    Route::get('/', function (Request $request) {
-        Log::debug('Hello world');
-        return view('welcome');
-    })->name('welcome');
-    Route::get('/home', 'HomeController@index')->name('home');
-    Auth::routes();
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/users', 'UserController@index')->name('users');
-        Route::get('/users/{id}', 'UserController@show')->name('users.show');
-    });
-});
 
 Route::get('/language/{lang}', function ($lang) {
     session(['locale' => $lang]);
     return back();
 })->name('language');
 
-Route::get('/error', function () {
-    Rollbar::log(Level::info(), 'Test info message');
-    throw new \Exception('Test exception');
-    abort(500);
-});
+Route::middleware(['locale'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('welcome');
 
-Route::get('/test', function () {
-    $types = [
-        'primary',
-        'secondary',
-        'success',
-        'danger',
-        'warning',
-        'info',
-        'light',
-        'dark'
-    ];
-    return view('test', compact('types'));
-});
+    Route::get('/home', 'HomeController@index')->name('home');
+    
+    Auth::routes();
+    
+    Route::get('/users', 'UserController@index')->name('users');
+    Route::get('/users/{id}', 'UserController@show')->name('users.show');
 
-Route::resource('/task_statuses', 'TaskStatusController');
-Route::resource('/tasks', 'TaskController');
-Route::get('labels/index', 'LabelController@adminIndex')->name('labels.adminIndex');
-Route::delete('labels/{label}/destroy', 'LabelController@adminDestroy')->name('labels.adminDestroy');
-Route::post('/tasks/{task}/labels/newconnection', 'LabelController@newConnection')->name('tasks.labels.newconnection');
-Route::resource('/tasks.labels', 'LabelController');
+    Route::resource('/task_statuses', 'TaskStatusController');
+
+    Route::resource('/tasks', 'TaskController');
+
+    Route::get('labels/index', 'LabelController@adminIndex')->name('labels.adminIndex');
+    Route::delete('labels/{label}/destroy', 'LabelController@adminDestroy')->name('labels.adminDestroy');
+
+    Route::post('/tasks/{task}/labels/newconnection', 'LabelController@newConnection')
+        ->name('tasks.labels.newconnection');
+        
+    Route::resource('/tasks.labels', 'LabelController');
+});

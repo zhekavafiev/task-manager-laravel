@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\WelcomeLetter;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -33,7 +34,11 @@ class SendWelcomEmail implements ShouldQueue
      */
     public function handle()
     {
-        Log::info($this->user);
-        Mail::to($this->user)->send(new WelcomeLetter($this->user));
+        try {
+            Mail::to($this->user)->send(new WelcomeLetter($this->user));
+            Log::info("Letter was send to {$this->user->name}");
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
     }
 }
