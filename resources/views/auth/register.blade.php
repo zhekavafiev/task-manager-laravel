@@ -30,9 +30,9 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">@lang('register.secName')</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="secName" value="{{ old('secName') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('second_name') is-invalid @enderror" name="second_name" value="{{ old('second_name') }}" required autocomplete="second_name" autofocus>
 
-                                @error('name')
+                                @error('second_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -78,49 +78,23 @@
 
                         <div class="form-group row">
                             <label for="birthday" class="col-md-4 col-form-label text-md-right">@lang('register.birthday')</label>
-                            <div class="col-md-2">
-                                <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="day" required autocomplete="new-password">
 
-                                @error('password')
+                            <div class="col col-md-4">
+                                <input id="birtday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" required autocomplete="birthday">
+                                
+                                @error('birthday')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-
-                            <div class="col-md-2">
-                                <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="month" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="col-md-2">
-                                <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="year" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
                         </div>
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">@lang('register.country')</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="name" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country" autofocus>
                             </div>
                         </div>
 
@@ -128,13 +102,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">@lang('register.city')</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="name" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus>
                             </div>
                         </div>
 
