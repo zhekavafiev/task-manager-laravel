@@ -25,6 +25,8 @@
                     font-size: 3.5rem;
                 }
             }
+
+            /* <!-- Custom styles for this template --> */
             
             .footer-custom {
                 position: absolute;
@@ -52,8 +54,7 @@
 
         </style>
         
-        <!-- Custom styles for this template -->
-        <link href="{{  asset('css/app.css')  }}" rel="stylesheet">
+        <link href="{{  asset('css/app.css')  }}" rel="stylesheet" type="text/css">
     </head>
 
     <body>

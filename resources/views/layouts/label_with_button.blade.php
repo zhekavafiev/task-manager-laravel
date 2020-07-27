@@ -1,3 +1,4 @@
+<p>@lang('labels.message')</p>
 <div class="row">
     @foreach ($task->label as $label)
         <div class="col">
@@ -6,7 +7,7 @@
             {{ Form::close() }}
         </div>
     @endforeach
-    <div class="col">
+    <div class="col col-md-2" style="margin-left: 15px;">
         {{ Form::model($task, ['url' => route('tasks.labels.newconnection', $task)]) }}
         <div class="row">
             <div calss="col">
@@ -24,7 +25,7 @@
         {{ Form::close() }}
     </div>
     <div class="col">
-        <a type="button" href="{{ route('tasks.labels.create', $task) }}" class="btn btn-secondary btn-sm float-left">Create Label</a><br>
+        <a type="button" href="{{ route('tasks.labels.create', $task) }}" class="btn btn-secondary btn-sm float-right">@lang('labels.create_new')</a><br>
     </div>
 </div>
 
