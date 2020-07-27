@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+<!-- Языковые изменения не вводил, потому что страница только для административного доступа
+Соответственно администратор может и на английском рулить) -->
     <div class="container">
             <table class="table">
                 <thead class="thead-dark">

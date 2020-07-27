@@ -8,5 +8,9 @@ return [
     'rus' => 'Rus',
     'eng' => 'Eng',
     'logout' => 'Logout',
-    'users' => 'Users'
+    'users' => 'Users',
+    'statuses' => 'Statuses',
+    'tasks' => 'Tasks',
+    'produced' => 'Produced by Evgeniy Vafiev ',
+    'github' => 'GitHub Repo'
 ];

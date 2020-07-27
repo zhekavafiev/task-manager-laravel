@@ -70,10 +70,10 @@
                             <a class="nav-link" href="{{ route('users') }}">@lang('header.users')<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('task_statuses.index') }}">Statuses</a>
+                            <a class="nav-link" href="{{ route('task_statuses.index') }}">@lang('header.statuses')</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('tasks.index') }}">Tasks</a>
+                            <a class="nav-link" href="{{ route('tasks.index') }}">@lang('header.tasks')</a>
                         </li>
 
                         <!-- <li class="nav-item">
@@ -131,7 +131,7 @@
         </main>
 
         <footer class="footer-custom">
-                <p>Produced by Evgeniy Vafiev <a href="#">(GitHub Repo)</a></p>
+                <p>@lang('header.produced')<a href="https://github.com/zhekavafiev/php-project-lvl4">(@lang('header.github'))</a></p>
         </footer>
     </body>
 

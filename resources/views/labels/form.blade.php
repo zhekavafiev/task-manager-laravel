@@ -7,49 +7,57 @@
     </ul>
 </div>
 @endif
-<div class="form-row">
-    <div class="col">
-        {{ Form::label('Text') }}
-        {{ Form::text('text') }}
 
-    </div>
-    <div class="col">
-    {{ Form::label('Text') }}
-    {{ Form::select('color', [
-            'red' => 'red',
-            'green' => 'green',
-            'yellow' => 'yellow',
-            'black' => 'black',
-            'white' => 'white',
-            'orange' => 'orange',
-            'silver' => 'silver',
-            'purple' => 'purple',
-            'indigo' => 'indigo',
-            'gray' => 'gray',
-            'white' => 'white',
-            'aqua' => 'aqua'
-        ]) }}
-    </div>
-    <div class="col">
-    {{ Form::label('Text') }}
-    {{ Form::select('text_color', [
-            'red' => 'red',
-            'green' => 'green',
-            'yellow' => 'yellow',
-            'black' => 'black',
-            'white' => 'white',
-            'orange' => 'orange',
-            'silver' => 'silver',
-            'purple' => 'purple',
-            'indigo' => 'indigo',
-            'gray' => 'gray',
-            'white' => 'white',
-            'aqua' => 'aqua'
-        ]) }}
-    </div>
-
+<div class="col col-md-4">
+    <label for="text">@lang('labels.name')</label>
 </div>
 
-<div>
-    {{ Form::submit('Create', ['class' => 'btn btn-lg btn-dark dropdown-toggle']) }}
+<div class="col col-md-2">
+    {{ Form::text('text', 'New lab', ['class' => 'form-control form-control-sm']) }}
+</div>
+
+<div class="col col-md-4">
+    <label for="text">@lang('labels.color')</label>
+</div>
+
+<!-- необходимо убрать генерацию форм либой, чтобы можно было передать языковые изменения -->
+
+<div class="col col-md-2">
+    {{ Form::select('color', [
+            'primary' => 'Blue',
+            'secondary' => 'Silver',
+            'sucess' => 'Green',
+            'red' => 'danger',
+            'warning' => 'Orange',
+            'info' => 'Indigo',
+            'link' => 'White',
+            'dark' => 'Black',
+            'light' => 'Silver'
+        ], 0, ['class' => 'form-control form-control-sm']) }}
+</div>
+
+<div class="col col-md-4">
+    <label for="text">@lang('labels.text_color')</label>
+</div>
+
+<div class="col col-md-2">
+    {{ Form::select('text_color', [
+        'red' => 'Red',
+        'green' => 'Green',
+        'yellow' => 'Yellow',
+        'black' => 'Black',
+        'white' => 'White',
+        'orange' => 'Orange',
+        'silver' => 'Silver',
+        'purple' => 'Purple',
+        'indigo' => 'Indigo',
+        'gray' => 'Gray',
+        'white' => 'White',
+        'aqua' => 'Aqua'
+    ], 0, ['class' => 'form-control form-control-sm']) }}
+</div>
+
+<br>
+<div class="col col-md-2">
+    <button type="submit" class="btn btn-secondary btm-sm">@lang('labels.button_create')</button>
 </div>
