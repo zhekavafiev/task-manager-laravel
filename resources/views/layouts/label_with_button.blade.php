@@ -2,7 +2,7 @@
     @foreach ($task->label as $label)
         <div class="col">
             {{ Form::open(['url' => route('tasks.labels.destroy', [$task, $label])]) }}
-                <a href="{{ route('tasks.labels.destroy', [$task, $label]) }}" data-confirm="Are you sure?" data-method="delete" style="color: black" type="button" class="btn btn-{{$label->color}} btn-sm ">{{$label->text}}</a> <br>
+                <a href="{{ route('tasks.labels.destroy', [$task, $label]) }}" data-confirm="@lang('labels.delete_message')" data-method="delete" style="color: black" type="button" class="btn btn-{{$label->color}} btn-sm ">{{$label->text}}</a> <br>
             {{ Form::close() }}
         </div>
     @endforeach
