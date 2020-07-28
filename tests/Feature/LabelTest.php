@@ -15,7 +15,7 @@ class LabelTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        // $this->artisan('db:seed');
+        $this->artisan('db:seed');
         $this->user = factory(User::class)->create();
         $this->task = factory(Task::class)->create();
     }
