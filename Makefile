@@ -22,7 +22,9 @@ install:
 	php artisan db:seed
 
 test-ci:
-	php artisan config:clear 
+	php artisan config:clear
+	php artisan config:cache 
+
 	composer run-script phpunit tests -- --coverage-clover ./build/logs/clover.xml
 
 clear:
