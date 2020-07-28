@@ -19,8 +19,10 @@ install:
 	php artisan config:cache
 	php artisan key:generate
 	php artisan migrate
+	php artisan db:seed
 
 test-ci:
+	php artisan config:clear
 	composer run-script phpunit tests -- --coverage-clover ./build/logs/clover.xml
 
 clear:
