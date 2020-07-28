@@ -13,7 +13,7 @@
 </div>
 
 <div>
-    {{ Form::text('name', trans("tasks.form_name"), ['class' => 'form-control form-control-sm']) }} <br>
+    {{ Form::text('name', $task->name ?? trans("tasks.form_name"), ['class' => 'form-control form-control-sm']) }} <br>
 </div>
 
 <div>
