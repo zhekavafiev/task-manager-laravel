@@ -61,18 +61,7 @@ class TaskStatusController extends Controller
             return redirect()->back();
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\TaskStatus  $taskStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TaskStatus $taskStatus)
-    {
-        dd(Auth::user() === null, empty(!Auth::user()));
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      *

@@ -21,7 +21,7 @@
                     @foreach ($statuses as $status)
                         <tr>
                             <th scope="row">{{ $status->id }}</th>
-                            <td><a href="{{ route('task_statuses.show', $status) }}">{{ $status->name }}</a></td>
+                            <td>{{ $status->name }}</td>
                             <td>
                                 <div class="text-center">
                                     <a href="{{ route('task_statuses.edit', $status) }}">@lang('task_statuses.button_edit')</a>
