@@ -47,7 +47,7 @@ class TaskStatusController extends Controller
     {
         if (Gate::allows('edit-create-delete-status')) {
             $data = $this->validate($request, [
-                'name' => 'required|unique:task_statuses|min:5|max:255:'
+                'name' => 'required|unique:task_statuses|max:255:'
             ]);
                    
             $status = new TaskStatus();

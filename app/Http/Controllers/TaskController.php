@@ -94,7 +94,6 @@ class TaskController extends Controller
         $task->save();
         $task->label()->attach($label);
 
-
         flash("Task {$task->nane} will be added")->success();
         return redirect()->route('tasks.index');
     }
