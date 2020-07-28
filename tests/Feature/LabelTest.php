@@ -15,7 +15,7 @@ class LabelTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->artisan('db:seed');
+        // $this->artisan('db:seed');
         $this->user = factory(User::class)->create();
         $this->task = factory(Task::class)->create();
     }
@@ -29,7 +29,6 @@ class LabelTest extends TestCase
     public function testStore()
     {
         $data = ['text' => 'Test'];
-        $this->withoutMiddleware();
         $response = $this->post(route('tasks.labels.store', $this->task), $data);
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();
@@ -42,7 +41,6 @@ class LabelTest extends TestCase
     {
         $label = factory(Label::class)->create();
         $this->task->label()->attach($label);
-        $this->withoutMiddleware();
         $response = $this->delete(route('tasks.labels.destroy', [$this->task, $label]));
 
         $response->assertRedirect();
