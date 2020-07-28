@@ -51,3 +51,8 @@ Route::get('/mail', function () {
     $user = Auth::user();
     return view('mail.welcome');
 });
+
+Route::get('/error', function () {
+    echo 'hi';
+    Rollbar::log(Level::INFO, 'I,m on error page');
+});

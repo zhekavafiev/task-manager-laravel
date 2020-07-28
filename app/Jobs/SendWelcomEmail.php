@@ -11,6 +11,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Rollbar\Payload\Level;
+use Rollbar\Rollbar;
 
 class SendWelcomEmail implements ShouldQueue
 {
@@ -36,9 +38,9 @@ class SendWelcomEmail implements ShouldQueue
     {
         try {
             Mail::to($this->user)->send(new WelcomeLetter($this->user));
-            Log::info("Letter was send to {$this->user->name}");
+            Rollbar::log(Level::INFO, "Letter was send to {$this->user->name}");
         } catch (Exception $e) {
-            Log::info($e->getMessage());
+            Log::info('Error:' . $e->getMessage());
         }
     }
 }
