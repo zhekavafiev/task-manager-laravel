@@ -21,12 +21,14 @@ class TaskStatusTest extends TestCase
 
     public function testIndex()
     {
+        $this->withoutMiddleware();
         $response = $this->get(route('task_statuses.index'));
         $response->assertStatus(200);
     }
 
     public function testCreate()
     {
+        $this->withoutMiddleware();
         $response = $this
             ->actingAs($this->user)
             ->get(route('task_statuses.create'));
