@@ -34,6 +34,8 @@ class TaskStatusTest extends TestCase
         $response = $this
             ->actingAs($this->user)
             ->get(route('task_statuses.create'));
+
+        $this->assertAuthenticatedAs($this->user);
         $response->assertStatus(200);
     }
 
