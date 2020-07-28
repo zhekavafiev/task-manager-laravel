@@ -28,6 +28,7 @@ class TaskStatusTest extends TestCase
 
     public function testCreate()
     {
+        echo PHP_EOL . 'user' . json_encode($this->user) . PHP_EOL;
         $response = $this
             ->actingAs($this->user)
             ->get(route('task_statuses.create'));

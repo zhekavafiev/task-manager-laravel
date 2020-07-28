@@ -6,7 +6,7 @@ lint:
 
 test:
 	php artisan config:clear 
-	php artisan test
+	composer run-script phpunit tests -- --coverage-clover ./build/logs/clover.xml
 
 deploy:
 	git push heroku master
