@@ -31,12 +31,12 @@ class TaskStatusTest extends TestCase
         $response = $this
             ->actingAs($this->user)
             ->get(route('task_statuses.create'));
-        
             $response->assertStatus(200);
     }
 
     public function testEdit()
     {
+        $this->withoutMiddleware();
         $response = $this
             ->actingAs($this->user)
             ->get(route('task_statuses.edit', $this->status));
