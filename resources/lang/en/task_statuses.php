@@ -13,5 +13,6 @@ return [
     'table_action' => 'Action',
     'button_edit' => 'Edit',
     'button_delete' => 'Delete',
-    'warning_message' => 'This action can not be undone. Are you sure?'
+    'warning_message' => 'This action can not be undone. Are you sure?',
+    'ph_name' => 'Name'
 ];
