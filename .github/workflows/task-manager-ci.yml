@@ -36,6 +36,7 @@ jobs:
       uses: paambaati/codeclimate-action@v2.4.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        ROLLBAR_TOKEN: ${{ secrets.ROLLBAR_TOKEN }}
       with:
         coverageCommand: make test-ci
         debug: true
