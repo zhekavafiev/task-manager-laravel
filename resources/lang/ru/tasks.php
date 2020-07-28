@@ -24,7 +24,7 @@ return [
     'button_delete' => 'Удалить',
     'button_edit' => 'Изменить',
     'warning_message' => 'Данное действие приведет к полной потере данных по данной задаче. Вы уверены что хотите продолжить',
-    'form_name' => 'Имя',
+    'form_name' => 'Заголовок',
     'form_status' => 'Статус',
     'form_assigner' => 'Исполнитель',
     'form_description' => 'Описание',
