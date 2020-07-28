@@ -29,6 +29,7 @@ class LabelTest extends TestCase
     public function testStore()
     {
         $data = ['text' => 'Test'];
+        $this->withoutMiddleware();
         $response = $this->post(route('tasks.labels.store', $this->task), $data);
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();
@@ -41,6 +42,7 @@ class LabelTest extends TestCase
     {
         $label = factory(Label::class)->create();
         $this->task->label()->attach($label);
+        $this->withoutMiddleware();
         $response = $this->delete(route('tasks.labels.destroy', [$this->task, $label]));
 
         $response->assertRedirect();

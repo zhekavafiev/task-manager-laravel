@@ -70,8 +70,13 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
+        if (Gate::allows('edit-create-delete-status')) {
             $status = TaskStatus::find($taskStatus->id);
             return view('task_statuses.edit', compact('status'));
+        } else {
+            flash('You need register or log in')->error();
+            return redirect()->back();
+        }
     }
 
     /**

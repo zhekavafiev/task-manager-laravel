@@ -36,7 +36,6 @@ class TaskStatusTest extends TestCase
 
     public function testEdit()
     {
-        $this->withoutMiddleware();
         $response = $this
             ->actingAs($this->user)
             ->get(route('task_statuses.edit', $this->status));
