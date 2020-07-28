@@ -28,7 +28,6 @@ class TaskStatusTest extends TestCase
 
     public function testCreate()
     {
-        $this->withoutMiddleware();
         $response = $this
             ->actingAs($this->user)
             ->get(route('task_statuses.create'));
