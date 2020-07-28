@@ -46,3 +46,8 @@ Route::middleware(['locale'])->group(function () {
         
     Route::resource('/tasks.labels', 'LabelController');
 });
+
+Route::get('/mail', function () {
+    $user = Auth::user();
+    return view('mail.welcome');
+});

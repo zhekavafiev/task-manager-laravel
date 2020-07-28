@@ -45,11 +45,13 @@
             }
 
             body {
-                margin-bottom: 100px;
+                margin-bottom: 60px;
             }
 
             .container {
                 margin: 30px;
+                max-width: 600px;
+                padding: 0 15px;
             }
 
         </style>
@@ -131,9 +133,12 @@
             @yield('content')
         </main>
 
-        <footer class="footer-custom">
-                <p>@lang('header.produced')<a href="https://github.com/zhekavafiev/php-project-lvl4">(@lang('header.github'))</a></p>
-        </footer>
+        <!-- <div style="margin-top:100px">
+            <footer class="footer-custom">
+                    <p>@lang('header.produced')<a href="https://github.com/zhekavafiev/php-project-lvl4">(@lang('header.github'))</a></p>
+            </footer>
+        </div> -->
+    
     </body>
 
 </html>
