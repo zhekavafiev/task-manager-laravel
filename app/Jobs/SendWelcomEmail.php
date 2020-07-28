@@ -38,8 +38,10 @@ class SendWelcomEmail implements ShouldQueue
     {
         try {
             Mail::to($this->user)->send(new WelcomeLetter($this->user));
+            Log::info("Letter was send to {$this->user->name}");
             Rollbar::log(Level::INFO, "Letter was send to {$this->user->name}");
         } catch (Exception $e) {
+            Rollbar::log(Level::ERROR, 'Error:' . $e->getMessage());
             Log::info('Error:' . $e->getMessage());
         }
     }
