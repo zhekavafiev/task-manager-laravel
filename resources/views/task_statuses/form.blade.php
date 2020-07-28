@@ -1,4 +1,6 @@
-{{ Form::label('name', 'Name') }}
+<br>
+{{ Form::label('name', trans('task_statuses.label_name')) }}
+<br>
 {{ Form::text('name') }} <br>
 @if ($errors->any())
 <div style="Color: red">
@@ -9,3 +11,4 @@
     </ul>
 </div>
 @endif
+<br>

@@ -23,5 +23,13 @@ return [
     'show_table_created' => 'Create',
     'button_delete' => 'Delete',
     'button_edit' => 'Edit',
-    'warning_message' => 'This action will lead to a complete loss of data on this task. Are you sure you want to continue?'
+    'warning_message' => 'This action will lead to a complete loss of data on this task. Are you sure you want to continue?',
+    'form_name' => 'Name',
+    'form_status' => 'Status',
+    'form_assigner' => 'Assigner',
+    'form_description' => 'Descroption',
+    'button_update' => 'Update',
+    'button_create' => 'Create',
+    'button_filter' => 'Filter',
+    'button_reset_filter' => 'Reset filter',
 ];

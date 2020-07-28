@@ -14,7 +14,7 @@
             </select>
             @include('tasks.form')
             <div>
-                {{ Form::submit('Create', ['class' => 'btn btn-sm btn-dark dropdown-toggle']) }}
+                {{ Form::submit(trans('tasks.button_create'), ['class' => 'btn btn-sm btn-dark dropdown-toggle']) }}
             </div>
         {{ Form::close() }}
     </div>

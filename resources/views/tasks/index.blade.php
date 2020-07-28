@@ -44,7 +44,7 @@
                             </select>
                         </div>
                         <div class="col col-md-2">
-                            {{ Form::submit('Filter', ['class' => 'btn btn-secondary btn-sm']) }}
+                            {{ Form::submit(trans('tasks.button_filter'), ['class' => 'btn btn-secondary btn-sm']) }}
                         </div>
                     </div>
                     {{ Form::close() }}
@@ -52,7 +52,7 @@
                     <div>
                         <br>
                         {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
-                            {{ Form::submit('Reset filter', ['class' => 'btn btn-secondary btn-sm']) }}
+                            {{ Form::submit(trans('tasks.button_reset_filter'), ['class' => 'btn btn-secondary btn-sm']) }}
                         {{ Form::close() }}
                         <br>
                     </div>

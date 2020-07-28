@@ -19,7 +19,7 @@
             </div>
 
             <div calss="col">
-                {{ Form::submit('Add', ['class' => "btn btn-secondary btn-sm"]) }}
+                {{ Form::submit(trans('labels.button_add'), ['class' => "btn btn-secondary btn-sm"]) }}
             </div>
         </div>
         {{ Form::close() }}

@@ -32,8 +32,7 @@ Route::middleware(['locale'])->group(function () {
     
     Auth::routes();
     
-    Route::get('/users', 'UserController@index')->name('users');
-    Route::get('/users/{id}', 'UserController@show')->name('users.show');
+    Route::middleware(['auth'])->get('/users', 'UserController@index')->name('users');
 
     Route::resource('/task_statuses', 'TaskStatusController');
 

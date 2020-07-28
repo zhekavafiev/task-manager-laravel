@@ -23,5 +23,14 @@ return [
     'show_table_created' => 'Создать',
     'button_delete' => 'Удалить',
     'button_edit' => 'Изменить',
-    'warning_message' => 'Данное действие приведет к полной потере данных по данной задаче. Вы уверены что хотите продолжить'
+    'warning_message' => 'Данное действие приведет к полной потере данных по данной задаче. Вы уверены что хотите продолжить',
+    'form_name' => 'Имя',
+    'form_status' => 'Статус',
+    'form_assigner' => 'Исполнитель',
+    'form_description' => 'Описание',
+    'button_update' => 'Обновить',
+    'button_create' => 'Создать',
+    'button_filter' => 'Фильровать',
+    'button_reset_filter' => 'Сброс фильтров',
+
 ];

@@ -10,7 +10,7 @@
         {{ Form::model($task, ['url' => route('tasks.update', $task), 'method' => 'PATCH']) }}
             @include('tasks.form')
             <div>
-                {{ Form::submit('Update', ['class' => 'btn btn-sm btn-secondary dropdown-toggle']) }}
+                {{ Form::submit(trans('tasks.button_update'), ['class' => 'btn btn-sm btn-secondary dropdown-toggle']) }}
             </div>
         {{ Form::close() }}
     </div>

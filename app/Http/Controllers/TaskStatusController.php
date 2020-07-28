@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\TaskStatus;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class TaskStatusController extends Controller
 {
@@ -121,13 +123,17 @@ class TaskStatusController extends Controller
     public function destroy(TaskStatus $taskStatus)
     {
         if (Gate::allows('edit-create-delete-status')) {
-            flash("Statuse {$taskStatus->name} will be removed")->success();
-        
-            if ($taskStatus) {
-                $taskStatus->delete();
+            try {
+                if ($taskStatus) {
+                    $taskStatus->delete();
+                }
+                flash("Statuse {$taskStatus->name} will be removed")->success();
+                return redirect()->route('task_statuses.index');
+            } catch (Exception $e) {
+                Log::info("Attempt to delete {$taskStatus->name}" . $e->getMessage());
+                flash("Other tasks have status {$taskStatus->name}. Delete is not possible")->error();
+                return redirect()->back();
             }
-    
-            return redirect()->route('task_statuses.index');
         } else {
             flash('You need register or log in')->error();
             return redirect()->back();

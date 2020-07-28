@@ -3,22 +3,17 @@
 @section('content')
     <div class="container">
         <br>
-        <h2>Types of Tasks</h2>
+        <h2>@lang('task_statuses.index_header')</h2>
         <div style="padding-top: 20px; padding-bottom: 20px;" class="float-right">
-            <a href="{{ route('task_statuses.create') }}" class="btn btn-secondary btm-lg">Create new</a>
-            <a href="{{ route('task_statuses.create') }}" class="btn btn-secondary btm-lg disabled" aria-disabled="true">Create new</a>
-
-            <!-- <form action="{{ route('task_statuses.create') }}">
-                <input type="submit" value="Create">
-            </form> -->
+            <a href="{{ route('task_statuses.create') }}" class="btn btn-secondary btm-lg">@lang('task_statuses.button_create_new')</a>
         </div>
         <div>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="column">Id</th>
-                        <th scope="column">Status name</th>
-                        <th scope="column" class="text-center">Action</th>
+                        <th scope="column">@lang('task_statuses.table_id')</th>
+                        <th scope="column">@lang('task_statuses.table_name')</th>
+                        <th scope="column" class="text-center">@lang('task_statuses.table_action')</th>
                     </tr>
                 </thead>
                 
@@ -29,8 +24,8 @@
                             <td><a href="{{ route('task_statuses.show', $status) }}">{{ $status->name }}</a></td>
                             <td>
                                 <div class="text-center">
-                                    <a href="{{ route('task_statuses.edit', $status) }}">Edit</a>
-                                    <a href="{{ route('task_statuses.destroy', $status) }}" data-confirm="Are you sure?" data-method="delete">Delete</a>
+                                    <a href="{{ route('task_statuses.edit', $status) }}">@lang('task_statuses.button_edit')</a>
+                                    <a href="{{ route('task_statuses.destroy', $status) }}" data-confirm="@lang('task_statuses.warning_message')" data-method="delete">@lang('task_statuses.button_delete')</a>
                                 </div>
                             </td>
                         </tr>

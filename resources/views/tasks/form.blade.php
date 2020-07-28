@@ -9,15 +9,15 @@
 @endif
 <br>
 <div>
-    <label for="name">Name</label>
+    <label for="name">{{trans('tasks.form_name')}}</label>
 </div>
 
 <div>
-    {{ Form::text('name', 'Name', ['class' => 'form-control form-control-sm']) }} <br>
+    {{ Form::text('name', trans("tasks.form_name"), ['class' => 'form-control form-control-sm']) }} <br>
 </div>
 
 <div>
-    <label for="status_id">Status</label>
+    <label for="status_id">@lang('tasks.form_status')</label>
     <select name="status_id" id="" class="form-control form-control-sm">
         @foreach ($statuses as $status)
             <option value="{{$status->id}}">{{ $status->name }}</option>
@@ -26,16 +26,16 @@
 </div>
 <br>
 <div>
-    <label for="assigned_to_id">Assigner</label>
+    <label for="assigned_to_id">@lang('tasks.form_assigner')</label>
     <select name="assigned_to_id" id=""  class="form-control form-control-sm">
-        <option value="0">Assigner</option>
+        <option value="0">@lang('tasks.form_assigner')</option>
         @foreach ($users as $user)
             <option value="{{$user->id}}">{{ $user->name }}</option>
         @endforeach
     </select>
 </div>
 <div>
-    <label for="description">Description</label>
+    <label for="description">@lang('tasks.form_description')</label>
         {{ Form::textarea('description') }}
 </div>
 <br>
