@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\TaskStatus;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class TaskStatusTest extends TestCase
@@ -28,11 +29,12 @@ class TaskStatusTest extends TestCase
 
     public function testCreate()
     {
-        echo PHP_EOL . 'user' . json_encode($this->user) . PHP_EOL;
+        echo PHP_EOL . 'User: ' . json_encode($this->user) . PHP_EOL;
+        echo PHP_EOL . 'DB: ' . json_encode(DB::table('users')->get()) . PHP_EOL;
         $response = $this
             ->actingAs($this->user)
             ->get(route('task_statuses.create'));
-            $response->assertStatus(200);
+        $response->assertStatus(200);
     }
 
     public function testEdit()
