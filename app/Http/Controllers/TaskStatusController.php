@@ -53,10 +53,10 @@ class TaskStatusController extends Controller
             $status = new TaskStatus();
             $status->fill($data);
             $status->save();
-            flash("Status {$status->name} will be added")->success();
+            flash(__('flash.statuses_added'))->success();
             return redirect()->route('task_statuses.index');
         } else {
-            flash('You need register or log in')->error();
+            flash(__('flash.statuses_create_error'))->error();
             return redirect()->back();
         }
     }
@@ -73,7 +73,7 @@ class TaskStatusController extends Controller
             $status = TaskStatus::find($taskStatus->id);
             return view('task_statuses.edit', compact('status'));
         } else {
-            flash('You need register or log in')->error();
+            flash(__('flash.statuses_create_error'))->error();
             return redirect()->back();
         }
     }
@@ -91,13 +91,13 @@ class TaskStatusController extends Controller
             $data = $this->validate($request, [
                 'name' => 'required|unique:task_statuses|min:5|max:255:'
             ]);
-            flash("Status name will be changed from {$taskStatus->name} to {$data['name']}")->success();
+            flash(__('flash.statuses_update'))->success();
     
             $taskStatus->fill($data);
             $taskStatus->save();
             return redirect()->route('task_statuses.index');
         } else {
-            flash('You need register or log in')->error();
+            flash(__('flash.statuses_create_error'))->error();
             return redirect()->back();
         }
     }
@@ -115,15 +115,15 @@ class TaskStatusController extends Controller
                 if ($taskStatus) {
                     $taskStatus->delete();
                 }
-                flash("Statuse {$taskStatus->name} will be removed")->success();
+                flash(__('flash.statuses_delete'))->success();
                 return redirect()->route('task_statuses.index');
             } catch (Exception $e) {
                 Log::info("Attempt to delete {$taskStatus->name}" . $e->getMessage());
-                flash("Other tasks have status {$taskStatus->name}. Delete is not possible")->error();
+                flash(__('flash.status_have_task_error'))->error();
                 return redirect()->back();
             }
         } else {
-            flash('You need register or log in')->error();
+            flash(__('flash.statuses_create_error'))->error();
             return redirect()->back();
         }
     }

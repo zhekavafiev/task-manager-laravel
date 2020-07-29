@@ -48,7 +48,7 @@ class TaskController extends Controller
     public function create()
     {
         if (!Gate::allows('edit-create-task')) {
-            flash('You need register or log in')->error();
+            flash(__('flash.tasks_create_error'))->error();
             return redirect()->back();
         }
         $task = new Task();
@@ -68,7 +68,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         if (!Gate::allows('edit-create-task')) {
-            flash('You need register or log in')->error();
+            flash(__('flash.tasks_create_error'))->error();
             return redirect()->back();
         }
 
@@ -76,25 +76,18 @@ class TaskController extends Controller
             'name' => 'required|max:255',
             'status_id' => 'not_in:0',
             'description' => 'max:1000|min:5',
-            'assigned_to_id' => 'required'
+            'assigned_to_id' => 'nullable'
         ]);
-
         $data = $request->input();
         $labelId = $data['label_id'] ?? null;
         $task = new Task();
         $label = Label::find($labelId);
         $task->fill($data);
         $task->creator()->associate(Auth::user());
-
-        // вынести в Form Request validation
-
-        if ($task->assigned_to_id == 0) {
-            $task->assigned_to_id = null;
-        }
         $task->save();
         $task->label()->attach($label);
 
-        flash("Task {$task->nane} will be added")->success();
+        flash(__('flash.tasks_added'))->success();
         return redirect()->route('tasks.index');
     }
 
@@ -118,14 +111,13 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         if (!Gate::allows('edit-create-task')) {
-            flash('You need register or log in')->error();
+            flash(__('flash.tasks_create_error'))->error();
             return redirect()->back();
         }
 
         $statuses = TaskStatus::get();
         $users = User::get();
         $labels = Label::get();
-        // dd($labels);
         return view('tasks.edit', compact('task', 'statuses', 'users', 'labels'));
     }
 
@@ -138,9 +130,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        // dd($request->input());
         if (!Gate::allows('edit-create-task')) {
-            flash('You need register or log in')->error();
+            flash(__('flash.tasks_create_error'))->error();
             return redirect()->back();
         }
 
@@ -148,15 +139,12 @@ class TaskController extends Controller
             'name' => 'required|max:255',
             'status_id' => 'not_in:0',
             'description' => 'max:1000|min:5',
-            'assigned_to_id' => 'required',
+            'assigned_to_id' => 'nullable',
             'label_id' => 'numeric'
         ]);
-        if ($data['assigned_to_id'] == 0) {
-            $data['assigned_to_id'] = null;
-        }
         $task->fill($data);
         $task->save();
-        flash("Task {$task->name} will be updated")->success();
+        flash(__('flash.tasks_update'))->success();
         return redirect()->route('tasks.index');
     }
 
@@ -170,13 +158,13 @@ class TaskController extends Controller
     {
         if (Gate::allows('delete-task', $task)) {
             if ($task) {
-                flash("Task {$task->name} will be deleted")->success();
+                flash(__('flash.tasks_delete'))->success();
                 $task->label()->detach();
                 $task->delete();
             }
             return redirect()->route('tasks.index');
         } else {
-            flash('You need register or log in or this task wos not created by you')->error();
+            flash(__('flash.tasks_delete_error'))->error();
             return redirect()->back();
         }
     }

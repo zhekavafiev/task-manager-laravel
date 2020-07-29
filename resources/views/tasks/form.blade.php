@@ -28,7 +28,7 @@
 <div>
     <label for="assigned_to_id">@lang('tasks.form_assigner')</label>
     <select name="assigned_to_id" id=""  class="form-control form-control-sm">
-        <option value="0">@lang('tasks.form_assigner')</option>
+        <option value="">@lang('tasks.form_assigner')</option>
         @foreach ($users as $user)
             <option value="{{$user->id}}">{{ $user->name }}</option>
         @endforeach

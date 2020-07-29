@@ -16,7 +16,7 @@ class LabelController extends Controller
             $labels = Label::get();
             return view('labels.index', compact('labels'));
         }
-        flash('You don\'t have enough rights for visit this page')->error();
+        flash(__('flash.labels_admin'))->error();
         return redirect()->route('tasks.index');
     }
 
@@ -28,7 +28,7 @@ class LabelController extends Controller
             return redirect()->route('labels.adminIndex');
         }
 
-        flash('You don\'t have enough rights for visit this page')->error();
+        flash(__('flash.labels_admin'))->error();
         return redirect()->route('tasks.index');
     }
 
@@ -58,7 +58,7 @@ class LabelController extends Controller
         $label->fill($request->input());
         $label->save();
         $task->label()->attach($label);
-        flash('The label was added')->success();
+        flash(__('flash.labels_store'))->success();
         return redirect()->route('tasks.show', $task);
     }
 
@@ -86,12 +86,11 @@ class LabelController extends Controller
         
         try {
             $task->label()->attach($label);
-            flash('This label was added')->success();
+            flash(__('flash.add_labels_to_task'))->success();
         } catch (Exception $e) {
-            flash('This label was added early')->error();
+            flash(__('flash.add_labels_to_task_error'))->error();
         }
 
         return redirect()->back();
-            dd($label);
     }
 }
