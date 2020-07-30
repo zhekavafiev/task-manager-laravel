@@ -130,6 +130,18 @@
         </header>
         <main role="main">
             @include('flash::message')
+            @if ($errors->any())
+            <div class="container">
+                <div style="Color: red">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+            </div>
+
             @yield('content')
         </main>
 

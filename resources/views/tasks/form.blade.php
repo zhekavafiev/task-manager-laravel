@@ -1,12 +1,3 @@
-@if ($errors->any())
-<div style="Color: red">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
 <br>
     <x-label-tag
         type="text"

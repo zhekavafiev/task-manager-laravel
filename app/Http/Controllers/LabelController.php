@@ -51,7 +51,7 @@ class LabelController extends Controller
     public function store(Request $request, Task $task)
     {
         $this->validate($request, [
-            'text' => 'required|max:7'
+            'text' => 'required|max:10'
         ]);
 
         $label = new Label();

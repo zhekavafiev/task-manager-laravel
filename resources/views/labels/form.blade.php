@@ -1,20 +1,10 @@
-@if ($errors->any())
-<div style="Color: red">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-
 <div class="col col-md-4">
     <x-label-tag 
         type="text"
         labelValue="{{__('labels.name')}}"
         name="text"
         class="form-control form-control-sm"
-        placeHolder="New Label"
+        placeHolder="{{__('labels.ph_new')}}"
         value=""
     />
 </div>

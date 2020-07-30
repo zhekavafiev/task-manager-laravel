@@ -6,7 +6,7 @@
     <div class="col col-md-2">
         {{ Form::model($task, ['url' => route('tasks.store')]) }}
             <label for="label_id">@lang('tasks.messege_label')</label>
-            <select name="label_id" class="form-control form-controle-sm" id="">
+            <select name="label_id" class="form-control form-control-sm" id="">
                 <option value="0">Label</option>
                 @foreach ($labels as $label)
                     <option value="{{ $label->id }}">{{$label->text}}</option>
