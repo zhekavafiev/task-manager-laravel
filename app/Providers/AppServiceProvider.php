@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Components\LabelSelect;
 use App\View\Components\LabelTag;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\URL;
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::component('label-tag', LabelTag::class);
+        Blade::component('label-select', LabelSelect::class);
         if (config('app.env') === 'production') {
             URL::forceScheme('https');
         }

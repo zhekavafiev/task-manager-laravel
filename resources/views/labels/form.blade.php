@@ -22,9 +22,6 @@
 <div class="col col-md-4">
     <label for="text">@lang('labels.color')</label>
 </div>
-
-<!-- необходимо убрать генерацию форм либой, чтобы можно было передать языковые изменения -->
-
 <div class="col col-md-2">
     {{ Form::select('color', [
             'primary' => __('labels.color_blue'),
