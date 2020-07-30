@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -55,4 +56,9 @@ Route::get('/mail', function () {
 Route::get('/error', function () {
     echo 'hi';
     Rollbar::log(Level::INFO, 'I,m on error page');
+});
+
+Route::get('/test', function () {
+    $users = User::get();
+    return view('test', compact('users'));
 });

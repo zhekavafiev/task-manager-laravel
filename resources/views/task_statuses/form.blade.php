@@ -1,7 +1,13 @@
-<br>
-{{ Form::label('name', trans('task_statuses.label_name')) }}
-<br>
-{{ Form::text('name', $status->name, ['placeholder' => trans('task_statuses.ph_name')]) }} <br>
+<div class="col col-md-2">
+    <x-label-tag
+        type="text"
+        labelValue="{{__('task_statuses.label_name')}}"
+        name="name"
+        class="form-control form-control-sm"
+        placeHolder="{{ __('task_statuses.ph_name') }}"
+        value="{{ $status->name }}"
+    />
+</div>
 @if ($errors->any())()
 <div style="Color: red">
     <ul>

@@ -8,13 +8,13 @@
 </div>
 @endif
 <br>
-<div>
-    <label for="name">{{trans('tasks.form_name')}}</label>
-</div>
-
-<div>
-    {{ Form::text('name', $task->name, ['class' => 'form-control form-control-sm', 'placeholder' => trans("tasks.form_name")]) }} <br>
-</div>
+<x-label-tag
+    type="text"
+    labelValue="{{__('tasks.form_name')}}"
+    name="name"
+    class="form-control form-control-sm"
+    placeHolder="Name"
+    value="{{ $task->name }}"/>
 
 <div>
     <label for="status_id">@lang('tasks.form_status')</label>
@@ -36,7 +36,7 @@
 </div>
 <div>
     <label for="description">@lang('tasks.form_description')</label>
-        {{ Form::textarea('description') }}
+    {{ Form::textarea('description') }}
 </div>
 <br>
 
