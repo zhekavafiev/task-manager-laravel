@@ -1,4 +1,4 @@
-<div class="col col-md-2">
+<div class="col col-md-2" style="margin-left: -15px;">
     <x-label-tag
         type="text"
         labelValue="{{__('task_statuses.label_name')}}"
