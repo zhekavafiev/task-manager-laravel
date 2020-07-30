@@ -1,6 +1,6 @@
 # Менеджер задач
 
-[![Action](https://github.com/zhekavafiev/php-project-lvl4/workflows/Task-manager-CI/badge.svg)](https://github.com/zhekavafiev/php-project-lvl4/blob/master/.github/workflows/task-manager-ci.yml)
+[![Action](https://github.com/zhekavafiev/php-project-lvl4/workflows/Task-manager-CI/badge.svg)](https://github.com/zhekavafiev/php-project-lvl4/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e6c365e6f65b1bdca517/maintainability)](https://codeclimate.com/github/zhekavafiev/php-project-lvl4/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e6c365e6f65b1bdca517/test_coverage)](https://codeclimate.com/github/zhekavafiev/php-project-lvl4/test_coverage)
 
@@ -13,5 +13,5 @@
 ## Установка
 Для того, чтобы установить приложение, выпоните
 `git clone https://github.com/zhekavafiev/php-project-lvl4.git`
-После окончания процедуры клонирования репозиотрия выполните команду `make install` для установки необходимых пакетов а также подготовки базы данных. Если при установке произошла ошибка, то Вам необходимо создать и сконфигурировать файл .env, с учетом вашего окружения, а так же используемуей базы данных. Не забудьте так же прописать настройки сервера почтовых рассылок и очередей. После этого повторно запустите команду `make install`.
+После окончания процедуры клонирования репозиотрия выполните команду `make install` для установки необходимых пакетов а также подготовки базы данных. Если при установке произошла ошибка, то Вам необходимо создать и сконфигурировать файл .env, с учетом вашего окружения, а так же используемой базы данных. Не забудьте так же прописать настройки сервера почтовых рассылок и очередей. После этого повторно запустите команду `make install`.
 Проверить работоспособность приложения можно, запустив локальный есервер `make server` или тесты `make test`.
