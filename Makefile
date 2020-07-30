@@ -7,6 +7,7 @@ lint:
 test:
 	php artisan config:clear 
 	composer run-script phpunit tests
+
 deploy:
 	git push heroku master
 

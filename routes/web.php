@@ -47,18 +47,3 @@ Route::middleware(['locale'])->group(function () {
         
     Route::resource('/tasks.labels', 'LabelController');
 });
-
-Route::get('/mail', function () {
-    $user = Auth::user();
-    return view('mail.welcome');
-});
-
-Route::get('/error', function () {
-    echo 'hi';
-    Rollbar::log(Level::INFO, 'I,m on error page');
-});
-
-Route::get('/test', function () {
-    $users = User::get();
-    return view('test', compact('users'));
-});
