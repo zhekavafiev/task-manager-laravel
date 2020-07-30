@@ -79,7 +79,6 @@ class TaskController extends Controller
             'assigned_to_id' => 'nullable'
         ]);
         $data = $request->input();
-        dd($data);
         $labelId = $data['label_id'] ?? null;
         $task = new Task();
         $label = Label::find($labelId);
