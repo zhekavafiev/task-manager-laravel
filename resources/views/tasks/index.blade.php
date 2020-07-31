@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>@lang('tasks.index_header')</h2>
+        <h2>{{__('tasks.index_header')}}</h2>
             <div style="padding-top: 10px; padding-bottom: 10px" class="row">
                
                 <div class="col md-col-8">
@@ -40,14 +40,14 @@
                         
                         <div class="col col-md-2">
                             <select name="filter[label]" id=""  class="form-control form-control-sm">
-                                <option value="0">@lang('tasks.select_label')</option>
+                                <option value="0">{{__('tasks.select_label')}}</option>
                                 @foreach ($labels as $label)
                                     <option value="{{ $label->id }}">{{$label->text}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col col-md-2">
-                            {{ Form::submit(trans('tasks.button_filter'), ['class' => 'btn btn-secondary btn-sm']) }}
+                            {{ Form::submit(__('tasks.button_filter'), ['class' => 'btn btn-secondary btn-sm']) }}
                         </div>
                     </div>
                     {{ Form::close() }}
@@ -55,7 +55,7 @@
                     <div>
                         <br>
                         {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
-                            {{ Form::submit(trans('tasks.button_reset_filter'), ['class' => 'btn btn-secondary btn-sm']) }}
+                            {{ Form::submit(__('tasks.button_reset_filter'), ['class' => 'btn btn-secondary btn-sm']) }}
                         {{ Form::close() }}
                         <br>
                     </div>
@@ -64,7 +64,7 @@
 
                 <div class="col col-md-4">
                         <div>
-                            <a href="{{ route('tasks.create') }}" class="btn btn-secondary btn-sm float-right">@lang('tasks.button_create_new')</a>
+                            <a href="{{ route('tasks.create') }}" class="btn btn-secondary btn-sm float-right">{{__('tasks.button_create_new')}}</a>
                         </div>
                 </div>
             </div>
@@ -72,13 +72,13 @@
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="column">@lang('tasks.table_id')</th>
-                        <th scope="column">@lang('tasks.table_name')</th>
-                        <th scope="column">@lang('tasks.table_labels')</th>
-                        <th scope="column">@lang('tasks.table_description')</th>
-                        <th scope="column">@lang('tasks.table_status')</th>
-                        <th scope="column">@lang('tasks.table_creator')</th>
-                        <th scope="column">@lang('tasks.table_assigner')</th>
+                        <th scope="column">{{__('tasks.table_id')}}</th>
+                        <th scope="column">{{__('tasks.table_name')}}</th>
+                        <th scope="column">{{__('tasks.table_labels')}}</th>
+                        <th scope="column">{{__('tasks.table_description')}}</th>
+                        <th scope="column">{{__('tasks.table_status')}}</th>
+                        <th scope="column">{{__('tasks.table_creator')}}</th>
+                        <th scope="column">{{__('tasks.table_assigner')}}</th>
                     </tr>
                 </thead>
                 

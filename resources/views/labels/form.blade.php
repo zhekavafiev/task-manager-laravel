@@ -10,7 +10,7 @@
 </div>
 
 <div class="col col-md-4">
-    <label for="text">@lang('labels.color')</label>
+    <label for="text">{{__('labels.color')}}</label>
 </div>
 <div class="col col-md-2">
     {{ Form::select('color', [
@@ -27,7 +27,7 @@
 </div>
 
 <div class="col col-md-4">
-    <label for="text">@lang('labels.text_color')</label>
+    <label for="text">{{__('labels.text_color')}}</label>
 </div>
 
 <div class="col col-md-2">
@@ -46,5 +46,5 @@
 
 <br>
 <div class="col col-md-2">
-    <button type="submit" class="btn btn-secondary btm-sm">@lang('labels.button_create')</button>
+    <button type="submit" class="btn btn-secondary btm-sm">{{__('labels.button_create')}}</button>
 </div>

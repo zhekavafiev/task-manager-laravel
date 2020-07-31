@@ -1,9 +1,9 @@
-<p>@lang('labels.message')</p>
+<p>{{__('labels.message')}}</p>
 <div class="row">
     @foreach ($task->label as $label)
         <div class="col">
             {{ Form::open(['url' => route('tasks.labels.destroy', [$task, $label])]) }}
-                <a href="{{ route('tasks.labels.destroy', [$task, $label]) }}" data-confirm="@lang('labels.delete_message')" data-method="delete" style="color: black" type="button" class="btn btn-{{$label->color}} btn-sm ">{{$label->text}}</a> <br>
+                <a href="{{ route('tasks.labels.destroy', [$task, $label]) }}" data-confirm="{{__('labels.delete_message')}}" data-method="delete" style="color: black" type="button" class="btn btn-{{$label->color}} btn-sm ">{{$label->text}}</a> <br>
             {{ Form::close() }}
         </div>
     @endforeach
@@ -19,13 +19,13 @@
             </div>
 
             <div calss="col">
-                {{ Form::submit(trans('labels.button_add'), ['class' => "btn btn-secondary btn-sm"]) }}
+                {{ Form::submit(__('labels.button_add'), ['class' => "btn btn-secondary btn-sm"]) }}
             </div>
         </div>
         {{ Form::close() }}
     </div>
     <div class="col">
-        <a type="button" href="{{ route('tasks.labels.create', $task) }}" class="btn btn-secondary btn-sm float-right">@lang('labels.create_new')</a><br>
+        <a type="button" href="{{ route('tasks.labels.create', $task) }}" class="btn btn-secondary btn-sm float-right">{{__('labels.create_new')}}</a><br>
     </div>
 </div>
 

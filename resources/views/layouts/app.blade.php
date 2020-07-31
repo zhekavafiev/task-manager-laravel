@@ -22,16 +22,16 @@
                 <div class="collapse navbar-collapse" id="navbarsExample04">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('home') }}">@lang('header.home')<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('home') }}">{{__('header.home')}}<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('users') }}">@lang('header.users')<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('users') }}">{{__('header.users')}}<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('task_statuses.index') }}">@lang('header.statuses')</a>
+                            <a class="nav-link" href="{{ route('task_statuses.index') }}">{{__('header.statuses')}}</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('tasks.index') }}">@lang('header.tasks')</a>
+                            <a class="nav-link" href="{{ route('tasks.index') }}">{{__('header.tasks')}}</a>
                         </li>
                     </ul>
 
@@ -40,10 +40,10 @@
                         <!-- Set language -->
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('header.lang')</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('header.lang')}}</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                <a class="dropdown-item" href="{{  route('language', ['lang' => 'en']) }}">@lang('header.eng')</a>
-                                <a class="dropdown-item" href="{{  route('language', ['lang' => 'ru']) }}">@lang('header.rus')</a>
+                                <a class="dropdown-item" href="{{  route('language', ['lang' => 'en']) }}">{{__('header.eng')}}</a>
+                                <a class="dropdown-item" href="{{  route('language', ['lang' => 'ru']) }}">{{__('header.rus')}}</a>
                             </div>
                         </li>
 
@@ -51,11 +51,11 @@
                         
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">@lang('header.login')</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{__('header.login')}}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">@lang('header.register')</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{__('header.register')}}</a>
                         </li>
                         @endif
                         @else
@@ -66,7 +66,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">@lang('header.logout')
+                            document.getElementById('logout-form').submit();">{{__('header.logout')}}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

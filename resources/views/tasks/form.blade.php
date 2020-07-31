@@ -26,7 +26,7 @@
         :array=$users
     />
 <div>
-    <label for="description">@lang('tasks.form_description')</label>
+    <label for="description">{{__('tasks.form_description')}}</label>
     {{ Form::textarea('description') }}
 </div>
 <br>
