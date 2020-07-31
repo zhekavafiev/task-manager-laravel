@@ -78,10 +78,6 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('tasks.index') }}">@lang('header.tasks')</a>
                         </li>
-
-                        <!-- <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li> -->
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
@@ -144,13 +140,4 @@
 
             @yield('content')
         </main>
-
-        <!-- <div style="margin-top:100px">
-            <footer class="footer-custom">
-                    <p>@lang('header.produced')<a href="https://github.com/zhekavafiev/php-project-lvl4">(@lang('header.github'))</a></p>
-            </footer>
-        </div> -->
-    
-    </body>
-
 </html>

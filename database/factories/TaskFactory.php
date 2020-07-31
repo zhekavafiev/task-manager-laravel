@@ -2,7 +2,6 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Label;
 use App\Task;
 use App\TaskStatus;
 use App\User;
@@ -15,6 +14,5 @@ $factory->define(Task::class, function (Faker $faker) {
         'status_id' => TaskStatus::get()->pluck('id')->random(),
         'creator_by_id' => User::get()->pluck('id')->random(),
         'assigned_to_id' => User::get()->pluck('id')->random() ?? null,
-        // 'label_id' => Label::get()->pluck('id')->random() ?? null
     ];
 });

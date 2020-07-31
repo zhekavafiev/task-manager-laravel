@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\TaskStatus;
 use App\User;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class TaskStatusTest extends TestCase

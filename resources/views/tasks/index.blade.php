@@ -9,30 +9,33 @@
                     {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
                     <div class="row">
                         <div class="col col-md-2">
-                            <select name="filter[status]" id=""  class="form-control form-control-sm">
-                                <option value="0">@lang('tasks.select_status')</option>
-                                @foreach ($statuses as $status)
-                                    <option value="{{ $status->id }}">{{$status->name}}</option>
-                                @endforeach
-                            </select>
+                            <x-select
+                                name="filter[status]"
+                                selectClass="form-control form-control-sm"
+                                startText="{{ __('tasks.select_status') }}"
+                                startValue="0"
+                                :array=$statuses
+                            />
                         </div>
 
                         <div class="col col-md-2">
-                            <select name="filter[creator]" id=""  class="form-control form-control-sm">
-                                <option value="0">@lang('tasks.select_creator')</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{$user->name}}</option>
-                                @endforeach
-                            </select>
+                            <x-select
+                                name="filter[creator]"
+                                selectClass="form-control form-control-sm"
+                                startText="{{ __('tasks.select_creator') }}"
+                                startValue="0"
+                                :array=$users
+                            />
                         </div>
 
                         <div class="col col-md-2">
-                            <select name="filter[assigner]" id=""  class="form-control form-control-sm">
-                                <option value="0">@lang('tasks.select_assigner')</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{$user->name}}</option>
-                                @endforeach
-                            </select>
+                            <x-select
+                                name="filter[assigner]"
+                                selectClass="form-control form-control-sm"
+                                startText="{{ __('tasks.select_assigner') }}"
+                                startValue="0"
+                                :array=$users
+                            />
                         </div>
                         
                         <div class="col col-md-2">

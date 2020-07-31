@@ -4,7 +4,7 @@
         labelValue="{{__('tasks.form_name')}}"
         name="name"
         class="form-control form-control-sm"
-        placeHolder="Name"
+        placeHolder="{{__('tasks.form_name')}}"
         value="{{ $task->name }}"
     />
 <br>
