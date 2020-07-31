@@ -9,54 +9,9 @@
         <meta name="csrf-param" content="_token">
         <title>Task manager</title>
         <script src="{{ asset('js/app.js') }}"></script>
-        <!-- Bootstrap core CSS -->
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-
-            /* <!-- Custom styles for this template --> */
-            
-            .footer-custom {
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                height: 60px;
-                line-height: 60px;
-                background-color: #C0C0C0;
-            }
-
-            .footer-custom > p{
-                color: #696969;
-                font-size: 100%;
-                margin-bottom: 0;
-                margin-left: 60px;
-            }
-
-            body {
-                margin-bottom: 60px;
-            }
-
-            .container {
-                margin: 30px;
-                max-width: 600px;
-                padding: 0 15px;
-            }
-
-        </style>
-        
         <link href="{{  asset('css/app.css')  }}" rel="stylesheet" type="text/css">
+        <link href="{{  asset('css/custom.css')  }}" rel="stylesheet" type="text/css">
+
     </head>
 
     <body>
