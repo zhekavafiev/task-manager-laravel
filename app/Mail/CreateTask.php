@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Log;
 
 class CreateTask extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $task;
     /**

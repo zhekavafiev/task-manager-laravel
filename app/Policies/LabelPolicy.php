@@ -24,5 +24,4 @@ class LabelPolicy
     {
         return $user->email === 'admin@admin.admin';
     }
-
 }
