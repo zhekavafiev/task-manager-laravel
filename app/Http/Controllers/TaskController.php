@@ -12,9 +12,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use App\Jobs\CreateNewTaskMail;
+use Exception;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only([
+            'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,15 +55,10 @@ class TaskController extends Controller
      */
     public function create()
     {
-        if (!Gate::allows('edit-create-task')) {
-            flash(__('flash.tasks_create_error'))->error();
-            return redirect()->back();
-        }
         $task = new Task();
         $statuses = TaskStatus::get();
         $users = User::get();
         $labels = Label::get();
-
         return view('tasks.create', compact('task', 'statuses', 'users', 'labels'));
     }
 
@@ -65,13 +68,8 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Task $task)
     {
-        if (!Gate::allows('edit-create-task')) {
-            flash(__('flash.tasks_create_error'))->error();
-            return redirect()->back();
-        }
-
         $this->validate($request, [
             'name' => 'required|max:255',
             'status_id' => 'not_in:0',
@@ -88,6 +86,10 @@ class TaskController extends Controller
         $task->label()->attach($label);
 
         flash(__('flash.tasks_added'))->success();
+
+        if ($task->assigned_to_id) {
+            CreateNewTaskMail::dispatch($task);
+        }
         return redirect()->route('tasks.index');
     }
 
@@ -110,11 +112,6 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        if (!Gate::allows('edit-create-task')) {
-            flash(__('flash.tasks_create_error'))->error();
-            return redirect()->back();
-        }
-
         $statuses = TaskStatus::get();
         $users = User::get();
         $labels = Label::get();
@@ -130,11 +127,6 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        if (!Gate::allows('edit-create-task')) {
-            flash(__('flash.tasks_create_error'))->error();
-            return redirect()->back();
-        }
-
         $data = $this->validate($request, [
             'name' => 'required|max:255',
             'status_id' => 'not_in:0',
@@ -156,14 +148,15 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        if (Gate::allows('delete-task', $task)) {
+        try {
+            $this->authorize('delete', $task);
             if ($task) {
                 flash(__('flash.tasks_delete'))->success();
                 $task->label()->detach();
                 $task->delete();
             }
             return redirect()->route('tasks.index');
-        } else {
+        } catch (Exception $e) {
             flash(__('flash.tasks_delete_error'))->error();
             return redirect()->back();
         }

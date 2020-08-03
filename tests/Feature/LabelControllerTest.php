@@ -22,14 +22,18 @@ class LabelTest extends TestCase
 
     public function testCreate()
     {
-        $response = $this->get(route('tasks.labels.create', $this->task));
+        $response = $this
+            ->actingAs($this->user)
+            ->get(route('tasks.labels.create', $this->task));
         $response->assertStatus(200);
     }
 
     public function testStore()
     {
         $data = ['text' => 'Test'];
-        $response = $this->post(route('tasks.labels.store', $this->task), $data);
+        $response = $this
+            ->actingAs($this->user)
+            ->post(route('tasks.labels.store', $this->task), $data);
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();
 
@@ -41,7 +45,9 @@ class LabelTest extends TestCase
     {
         $label = factory(Label::class)->create();
         $this->task->label()->attach($label);
-        $response = $this->delete(route('tasks.labels.destroy', [$this->task, $label]));
+        $response = $this
+            ->actingAs($this->user)
+            ->delete(route('tasks.labels.destroy', [$this->task, $label]));
 
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();
@@ -49,22 +55,22 @@ class LabelTest extends TestCase
         $this->assertEmpty($this->task->label);
     }
 
-    public function testIndexAdmin()
+    public function testIndex()
     {
         $user = factory(User::class)->create(['email' => 'admin@admin.admin']);
         $response = $this
             ->actingAs($user)
-            ->get(route('labels.adminIndex'));
+            ->get(route('labels.index'));
         $response->assertOk();
         $response->assertSessionHasNoErrors();
 
         $response = $this
             ->actingAs($this->user)
-            ->get(route('labels.adminIndex'));
-        $response->assertRedirect();
+            ->get(route('labels.index'));
+        $response->assertStatus(403);
     }
 
-    public function testDestroyAdmin()
+    public function testLabelDelete()
     {
         $user = factory(User::class)->create(['email' => 'admin@admin.admin']);
         $label = factory(Label::class)->create();
@@ -72,7 +78,7 @@ class LabelTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->delete(route('labels.adminDestroy', $label));
+            ->delete(route('labels.delete', $label));
 
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();

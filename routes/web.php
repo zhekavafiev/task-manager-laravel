@@ -33,8 +33,8 @@ Route::resource('/task_statuses', 'TaskStatusController');
 
 Route::resource('/tasks', 'TaskController');
 
-Route::get('labels/index', 'LabelController@adminIndex')->name('labels.adminIndex');
-Route::delete('labels/{label}/destroy', 'LabelController@adminDestroy')->name('labels.adminDestroy');
+Route::get('labels', 'LabelController@index')->name('labels.index');
+Route::delete('labels/{label}', 'LabelController@delete')->name('labels.delete');
 
 Route::post('/tasks/{task}/labels/newconnection', 'LabelController@newConnection')
     ->name('tasks.labels.newconnection');

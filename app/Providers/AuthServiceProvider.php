@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Label;
+use App\Policies\LabelPolicy;
+use App\Policies\TaskPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        Task::class => TaskPolicy::class,
+        Label::class => LabelPolicy::class
     ];
 
     /**
@@ -24,25 +27,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        Gate::define('edit-create-delete-status', function ($user) {
-            return $user != null;
-        });
-
-        Gate::define('edit-create-task', function ($user) {
-            return $user != null;
-        });
-
-        Gate::define('delete-task', function ($user, $task) {
-            return $user->id === $task->creator_by_id;
-        });
-
-        Gate::define('edit-create-label', function ($user) {
-            return $user != null;
-        });
-
-        Gate::define('admin', function ($user) {
-            return $user->email === 'admin@admin.admin';
-        });
     }
 }

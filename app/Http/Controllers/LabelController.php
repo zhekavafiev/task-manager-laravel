@@ -5,31 +5,31 @@ namespace App\Http\Controllers;
 use App\Label;
 use App\Task;
 use Exception;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class LabelController extends Controller
 {
-    public function adminIndex()
+
+    public function __construct()
     {
-        if (Gate::allows('admin')) {
-            $labels = Label::get();
-            return view('labels.index', compact('labels'));
-        }
-        flash(__('flash.labels_admin'))->error();
-        return redirect()->route('tasks.index');
+        $this->middleware('auth')->only([
+            'create', 'store', 'destroy', 'newConnection'
+        ]);
     }
 
-    public function adminDestroy(Label $label)
+    public function index()
     {
-        if (Gate::allows('admin')) {
-            $label->task()->detach();
-            $label->delete();
-            return redirect()->route('labels.adminIndex');
-        }
+        $this->authorize('actionWithLabels', Label::class);
+        $labels = Label::get();
+        return view('labels.index', compact('labels'));
+    }
 
-        flash(__('flash.labels_admin'))->error();
-        return redirect()->route('tasks.index');
+    public function delete(Label $label)
+    {
+        $this->authorize('actionWithLabels', Label::class);
+        $label->task()->detach();
+        $label->delete();
+        return redirect()->route('labels.index');
     }
 
     /**

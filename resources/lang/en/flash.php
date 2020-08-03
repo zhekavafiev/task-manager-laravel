@@ -5,7 +5,7 @@ return [
     'tasks_added' => 'Task was added',
     'tasks_update' => 'Task was update',
     'tasks_delete' => 'Task was removed',
-    'tasks_delete_error' => 'You need register or log in or this task wos not created by you',
+    'tasks_delete_error' => 'This task wos not created by you',
     'labels_admin' => 'You don\'t have enough rights for visit this page',
     'labels_store' => 'The label was added',
     'add_labels_to_task' => 'The label was added',

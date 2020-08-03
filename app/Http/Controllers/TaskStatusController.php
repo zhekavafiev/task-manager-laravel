@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\TaskStatus;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 
 class TaskStatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -28,13 +32,8 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('edit-create-delete-status')) {
-            $status = new TaskStatus();
-            return view('task_statuses.create', compact('status'));
-        } else {
-            flash('You need register or log in')->error();
-            return redirect()->back();
-        }
+        $status = new TaskStatus();
+        return view('task_statuses.create', compact('status'));
     }
 
     /**
@@ -45,20 +44,15 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
-        if (Gate::allows('edit-create-delete-status')) {
-            $data = $this->validate($request, [
-                'name' => 'required|unique:task_statuses|max:255:'
-            ]);
-                   
-            $status = new TaskStatus();
-            $status->fill($data);
-            $status->save();
-            flash(__('flash.statuses_added'))->success();
-            return redirect()->route('task_statuses.index');
-        } else {
-            flash(__('flash.statuses_create_error'))->error();
-            return redirect()->back();
-        }
+        $data = $this->validate($request, [
+            'name' => 'required|unique:task_statuses|max:255:'
+        ]);
+                
+        $status = new TaskStatus();
+        $status->fill($data);
+        $status->save();
+        flash(__('flash.statuses_added'))->success();
+        return redirect()->route('task_statuses.index');
     }
     
     /**
@@ -69,13 +63,8 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
-        if (Gate::allows('edit-create-delete-status')) {
-            $status = TaskStatus::find($taskStatus->id);
-            return view('task_statuses.edit', compact('status'));
-        } else {
-            flash(__('flash.statuses_create_error'))->error();
-            return redirect()->back();
-        }
+        $status = TaskStatus::find($taskStatus->id);
+        return view('task_statuses.edit', compact('status'));
     }
 
     /**
@@ -87,19 +76,14 @@ class TaskStatusController extends Controller
      */
     public function update(Request $request, TaskStatus $taskStatus)
     {
-        if (Gate::allows('edit-create-delete-status')) {
-            $data = $this->validate($request, [
-                'name' => 'required|unique:task_statuses|min:5|max:255:'
-            ]);
-            flash(__('flash.statuses_update'))->success();
-    
-            $taskStatus->fill($data);
-            $taskStatus->save();
-            return redirect()->route('task_statuses.index');
-        } else {
-            flash(__('flash.statuses_create_error'))->error();
-            return redirect()->back();
-        }
+        $data = $this->validate($request, [
+            'name' => 'required|unique:task_statuses|min:5|max:255:'
+        ]);
+        flash(__('flash.statuses_update'))->success();
+
+        $taskStatus->fill($data);
+        $taskStatus->save();
+        return redirect()->route('task_statuses.index');
     }
 
     /**
@@ -110,20 +94,15 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        if (Gate::allows('edit-create-delete-status')) {
-            try {
-                if ($taskStatus) {
-                    $taskStatus->delete();
-                }
-                flash(__('flash.statuses_delete'))->success();
-                return redirect()->route('task_statuses.index');
-            } catch (Exception $e) {
-                Log::info("Attempt to delete {$taskStatus->name}" . $e->getMessage());
-                flash(__('flash.status_have_task_error'))->error();
-                return redirect()->back();
+        try {
+            if ($taskStatus) {
+                $taskStatus->delete();
             }
-        } else {
-            flash(__('flash.statuses_create_error'))->error();
+            flash(__('flash.statuses_delete'))->success();
+            return redirect()->route('task_statuses.index');
+        } catch (Exception $e) {
+            Log::info("Attempt to delete {$taskStatus->name}" . $e->getMessage());
+            flash(__('flash.status_have_task_error'))->error();
             return redirect()->back();
         }
     }
