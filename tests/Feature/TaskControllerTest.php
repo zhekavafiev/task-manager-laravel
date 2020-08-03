@@ -40,6 +40,7 @@ class TaskTest extends TestCase
             ->actingAs($this->user)
             ->post(route('tasks.store', $data));
         $response->assertStatus(302);
+        $response->assertSessionHasNoErrors();
         $this->assertDatabaseHas('tasks', $data);
     }
 
