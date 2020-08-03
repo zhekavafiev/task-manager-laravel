@@ -30,7 +30,6 @@ class CreateTask extends Mailable
      */
     public function build()
     {
-        Log::info('In letter');
         return $this->view('mail.toAssignerCraeteTask');
     }
 }

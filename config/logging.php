@@ -44,7 +44,7 @@ return [
         
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['rollbar', 'single'],
             'ignore_exceptions' => false,
         ],
 

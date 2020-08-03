@@ -36,7 +36,7 @@ class CreateNewTaskMail implements ShouldQueue
      */
     public function handle()
     {
-        Log::error("Send mail about change to " . $this->task->assigner->email);
+        Log::info("Send mail about create task to " . $this->task->assigner->email);
         Mail::to($this->task->assigner->email)->send(new CreateTask($this->task));
     }
 }

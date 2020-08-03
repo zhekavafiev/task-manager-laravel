@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Rollbar\Payload\Level;
+use Rollbar\Rollbar;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +43,7 @@ Route::post('/tasks/{task}/labels/newconnection', 'LabelController@newConnection
     ->name('tasks.labels.newconnection');
     
 Route::resource('/tasks.labels', 'LabelController');
+
+Route::get('/rollbar', function () {
+    echo 'RollbarTest';
+});
