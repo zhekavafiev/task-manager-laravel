@@ -9,43 +9,49 @@
                     {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET']) }}
                     <div class="row">
                         <div class="col col-md-2">
-                            <x-select
+                            <x-filter-select-status
                                 name="filter[status]"
                                 selectClass="form-control form-control-sm"
                                 startText="{{ __('tasks.select_status') }}"
                                 startValue="0"
                                 :array=$statuses
+                                :filter=$filter
                             />
                         </div>
 
                         <div class="col col-md-2">
-                            <x-select
+                            <x-filter-select-creator
                                 name="filter[creator]"
                                 selectClass="form-control form-control-sm"
                                 startText="{{ __('tasks.select_creator') }}"
                                 startValue="0"
                                 :array=$users
+                                :filter=$filter
                             />
                         </div>
 
                         <div class="col col-md-2">
-                            <x-select
+                            <x-filter-select-assigner
                                 name="filter[assigner]"
                                 selectClass="form-control form-control-sm"
                                 startText="{{ __('tasks.select_assigner') }}"
                                 startValue="0"
                                 :array=$users
+                                :filter=$filter
+                            />
+                        </div>
+
+                        <div class="col col-md-2">
+                            <x-filter-select-label
+                                name="filter[label]"
+                                selectClass="form-control form-control-sm"
+                                startText="{{ __('tasks.select_label') }}"
+                                startValue="0"
+                                :array=$labels
+                                :filter=$filter
                             />
                         </div>
                         
-                        <div class="col col-md-2">
-                            <select name="filter[label]" id=""  class="form-control form-control-sm">
-                                <option value="0">{{__('tasks.select_label')}}</option>
-                                @foreach ($labels as $label)
-                                    <option value="{{ $label->id }}">{{$label->text}}</option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="col col-md-2">
                             {{ Form::submit(__('tasks.button_filter'), ['class' => 'btn btn-secondary btn-sm']) }}
                         </div>

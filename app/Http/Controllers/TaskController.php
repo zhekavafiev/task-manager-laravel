@@ -30,6 +30,8 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        $filter = $request->query('filter');
+        // dd($filter === null);
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters([
                 AllowedFilter::exact('status', 'status_id')->ignore(0),
@@ -45,7 +47,7 @@ class TaskController extends Controller
         $statuses = TaskStatus::get();
         $users = User::get();
         $labels = Label::get();
-        return view('tasks.index', compact('tasks', 'statuses', 'users', 'labels'));
+        return view('tasks.index', compact('tasks', 'statuses', 'users', 'labels', 'filter'));
     }
 
     /**
