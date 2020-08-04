@@ -2,30 +2,31 @@
 
 namespace App\View\Components;
 
+use App\Task;
 use Illuminate\View\Component;
 
-class LabelSelect extends Component
+class LabelSelectStatus extends Component
 {
     public $array;
-    public $name;
     public $labelText;
     public $startText;
     public $startValue;
     public $selectClass;
+    public $task;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $labelText, $selectClass, $startText, $startValue, $array)
+    public function __construct($labelText, $selectClass, $startText, $startValue, $array, Task $task)
     {
-        $this->name = $name;
         $this->labelText = $labelText;
         $this->selectClass = $selectClass;
         $this->startText = $startText;
         $this->startValue = $startValue;
         $this->array = $array;
+        $this->task = $task;
     }
 
     /**
@@ -35,6 +36,6 @@ class LabelSelect extends Component
      */
     public function render()
     {
-        return view('components.label-select');
+        return view('components.label-select-status');
     }
 }

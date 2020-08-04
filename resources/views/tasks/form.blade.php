@@ -8,22 +8,23 @@
         value="{{ $task->name }}"
     />
 <br>
-    <x-label-select
-        name="status_id"
+
+    <x-label-select-status
         labelText="{{__('tasks.form_status')}}"
         selectClass="form-control form-control-sm"
         startText="{{__('tasks.form_status')}}"
         startValue="0"
         :array=$statuses
+        :task=$task
     />
 <br>
-    <x-label-select
-        name="assigned_to_id"
+    <x-label-select-assigner
         labelText="{{__('tasks.form_assigner')}}"
         selectClass="form-control form-control-sm"
         startText="{{ __('tasks.form_assigner') }}"
         startValue=""
         :array=$users
+        :task=$task
     />
 <div>
     <label for="description">{{__('tasks.form_description')}}</label>
