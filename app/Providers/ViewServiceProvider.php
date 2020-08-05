@@ -24,7 +24,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('tasks.index', function ($view) {
+        View::composer('layouts.app', function ($view) {
             $view->with('weather', session()->get('weather'));
         });
     }

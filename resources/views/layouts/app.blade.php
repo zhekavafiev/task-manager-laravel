@@ -80,6 +80,7 @@
             </nav>
         </header>
         <main role="main">
+            @include('layouts.weather_line')
             @include('flash::message')
             @if ($errors->any())
             <div class="container">

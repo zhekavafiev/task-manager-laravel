@@ -45,15 +45,3 @@ Route::post('/tasks/{task}/labels/newconnection', 'LabelController@newConnection
     ->name('tasks.labels.newconnection');
     
 Route::resource('/tasks.labels', 'LabelController');
-
-Route::get('/rollbar', function () {
-    echo 'RollbarTest';
-});
-
-// Route::get('test', function () {
-//     $user = Auth::user();
-//     $test = new Weather($user);
-//         $test->setSession();
-//         // session()->pull('weather');
-//     return view('test_include');
-// });

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpeers\GetWeather\Weather;
 use App\Label;
 use App\Task;
 use App\TaskStatus;
@@ -30,8 +29,6 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $weather = new Weather(Auth::user());
-        $weather->setSession();
         $filter = $request->query('filter');
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters([
