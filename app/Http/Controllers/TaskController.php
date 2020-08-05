@@ -31,7 +31,6 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $filter = $request->query('filter');
-        // dd($filter === null);
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters([
                 AllowedFilter::exact('status', 'status_id')->ignore(0),
