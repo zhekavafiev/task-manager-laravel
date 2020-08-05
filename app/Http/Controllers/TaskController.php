@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpeers\GetWeather\Weather;
 use App\Label;
 use App\Task;
 use App\TaskStatus;
@@ -9,7 +10,6 @@ use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use App\Jobs\CreateNewTaskMail;
@@ -30,6 +30,8 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        $weather = new Weather(Auth::user());
+        $weather->setSession();
         $filter = $request->query('filter');
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters([

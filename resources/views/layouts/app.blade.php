@@ -92,7 +92,6 @@
                 </div>
                 @endif
             </div>
-
             @yield('content')
         </main>
 </html>

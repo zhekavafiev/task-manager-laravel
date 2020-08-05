@@ -1,6 +1,8 @@
 <?php
 
+use App\Helpeers\GetWeather\Weather;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Rollbar\Payload\Level;
@@ -47,3 +49,11 @@ Route::resource('/tasks.labels', 'LabelController');
 Route::get('/rollbar', function () {
     echo 'RollbarTest';
 });
+
+// Route::get('test', function () {
+//     $user = Auth::user();
+//     $test = new Weather($user);
+//         $test->setSession();
+//         // session()->pull('weather');
+//     return view('test_include');
+// });

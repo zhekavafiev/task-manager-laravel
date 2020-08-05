@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('layouts.weather_line')
     <div class="container">
         <h2>{{__('tasks.index_header')}}</h2>
             <div style="padding-top: 10px; padding-bottom: 10px" class="row">
