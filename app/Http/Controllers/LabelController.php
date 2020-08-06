@@ -20,5 +20,4 @@ class LabelController extends Controller
         $label->delete();
         return redirect()->route('labels.index');
     }
-
 }
