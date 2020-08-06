@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::prefix('/tasks')->group(function () {
+    Route::get('/', 'ApiTaskController@getTasks');
+    Route::get('/{taskId}', 'ApiTaskController@getTask')->where(['taskId' => '[0-9]+']);
+    Route::post('/', 'ApiTaskController@createTask');
+    Route::delete('/{taskId}', 'ApiTaskController@deleteTask')->where(['taskId' => '[0-9]+']);
+    Route::patch('/{taskId}', 'ApiTaskController@updateTask')->where(['taskId' => '[0-9]+']);
+});

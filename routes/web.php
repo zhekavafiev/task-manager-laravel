@@ -1,6 +1,8 @@
 <?php
 
 use App\Helpeers\GetWeather\Weather;
+use App\Http\Resources\TaskCollection;
+use App\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -45,3 +47,16 @@ Route::post('/tasks/{task}/labels/newconnection', 'LabelController@newConnection
     ->name('tasks.labels.newconnection');
     
 Route::resource('/tasks.labels', 'LabelController');
+
+Route::get('test', function () {
+    $task = new TaskCollection(Task::all()->keyBy->id);
+    // dd($task);
+    return $task;
+});
+
+Route::get('test_response', function () {
+    $response = Http::get('http://127.0.0.1:8000/test');
+    echo $response->body();
+    // dd($task);
+});
+
