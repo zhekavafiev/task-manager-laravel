@@ -74,11 +74,9 @@ class TaskStatusTest extends TestCase
     public function testDestroy()
     {
         $status = factory(TaskStatus::class)->create();
-        $this->withoutMiddleware();
         $response = $this
             ->actingAs($this->user)
             ->delete(route('task_statuses.destroy', $status));
-
         
         $response->assertStatus(302);
         $response->assertSessionHasNoErrors();

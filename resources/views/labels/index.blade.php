@@ -21,7 +21,7 @@
                             <td>{{$label->color}}</td>
                             <td>{{$label->text_color}}</td>
                             <td>
-                                <a href="{{ route('labels.delete', $label) }}" data-confirm="Are you sure?" data-method="delete">Delete</a>
+                                <a href="{{ route('labels.destroy', $label) }}" data-confirm="Are you sure?" data-method="delete">Delete</a>
                             </td>
                         </tr>
                     @endforeach

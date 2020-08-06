@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Rollbar\Payload\Level;
 use Rollbar\Rollbar;
@@ -36,14 +35,9 @@ Route::resource('/task_statuses', 'TaskStatusController');
 
 Route::resource('/tasks', 'TaskController');
 
-Route::get('labels', 'LabelController@index')->name('labels.index');
-Route::delete('labels/{label}', 'LabelController@delete')->name('labels.delete');
+Route::resource('/labels', 'LabelController')->only(['index', 'destroy']);
 
-Route::post('/tasks/{task}/labels/newconnection', 'LabelController@newConnection')
+Route::post('/tasks/{task}/labels/newconnection', 'TaskLabelController@newConnection')
     ->name('tasks.labels.newconnection');
     
-Route::resource('/tasks.labels', 'LabelController');
-
-Route::get('/rollbar', function () {
-    echo 'RollbarTest';
-});
+Route::resource('/tasks.labels', 'TaskLabelController');

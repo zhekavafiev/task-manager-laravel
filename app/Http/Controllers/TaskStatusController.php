@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TaskStatus;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class TaskStatusController extends Controller
 {
@@ -63,7 +61,7 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
-        $status = TaskStatus::find($taskStatus->id);
+        $status = $taskStatus;
         return view('task_statuses.edit', compact('status'));
     }
 
@@ -94,16 +92,11 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        try {
-            if ($taskStatus) {
-                $taskStatus->delete();
-            }
-            flash(__('flash.statuses_delete'))->success();
-            return redirect()->route('task_statuses.index');
-        } catch (Exception $e) {
-            Log::info("Attempt to delete {$taskStatus->name}" . $e->getMessage());
-            flash(__('flash.status_have_task_error'))->error();
-            return redirect()->back();
+        $status = TaskStatus::findOrFail($taskStatus->id);
+        if ($status) {
+            $taskStatus->delete();
         }
+        flash(__('flash.statuses_delete'))->success();
+        return redirect()->route('task_statuses.index');
     }
 }

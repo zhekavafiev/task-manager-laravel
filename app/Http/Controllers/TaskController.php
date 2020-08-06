@@ -9,7 +9,6 @@ use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use App\Jobs\CreateNewTaskMail;
@@ -85,10 +84,9 @@ class TaskController extends Controller
         $task->creator()->associate(Auth::user());
         $task->save();
         $task->label()->attach($label);
-
         flash(__('flash.tasks_added'))->success();
 
-        if ($task->assigned_to_id) {
+        if ($task->assigner) {
             CreateNewTaskMail::dispatch($task);
         }
         return redirect()->route('tasks.index');
@@ -150,7 +148,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         try {
-            $this->authorize('delete', $task);
+            $this->authorize($task);
             if ($task) {
                 flash(__('flash.tasks_delete'))->success();
                 $task->label()->detach();

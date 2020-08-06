@@ -10,16 +10,6 @@ class LabelPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function actionWithLabels(User $user)
     {
         return $user->email === 'admin@admin.admin';
