@@ -1,8 +1,5 @@
 <?php
 
-use App\Helpeers\GetWeather\Weather;
-use App\Http\Resources\TaskCollection;
-use App\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
