@@ -27,12 +27,12 @@ class Weather
     private function getWeather()
     {
         $response = Http::get("api.openweathermap.org/data/2.5/weather?q={$this->city}&appid={$this->wetherKey}");
-        Log::info('My city response: ' . PHP_EOL . json_decode($response->body()));
+        Log::info("Class ; " . __CLASS__ . PHP_EOL . 'My city response: ' . PHP_EOL . json_encode($response->body()));
         if ($response->status() != 200) {
             $this->findCity = 0;
             $response =
                 Http::get("api.openweathermap.org/data/2.5/weather?q={$this->defaultCity}&appid={$this->wetherKey}");
-                Log::info('Default city response: ' . PHP_EOL . json_decode($response->body()));
+                Log::info("Class ; " . __CLASS__ . PHP_EOL . 'Default city response: ' . PHP_EOL . json_encode($response->body()));
         }
         $this->weather = json_decode($response->body());
     }
@@ -41,7 +41,7 @@ class Weather
     {
         $this->getWeather();
 
-        Log::info('Weather property: ' . PHP_EOL . json_decode($this->weather));
+        Log::info('Weather property: ' . PHP_EOL . json_encode($this->weather));
 
         if ($this->findCity == 1) {
             session()->put('weather', [
