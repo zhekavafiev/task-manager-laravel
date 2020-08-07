@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,3 +40,9 @@ Route::post('/tasks/{task}/labels/newconnection', 'TaskLabelController@newConnec
     ->name('tasks.labels.newconnection');
     
 Route::resource('/tasks.labels', 'TaskLabelController');
+
+Route::get('test', function () {
+    $response = Http::get('http://evgvfv-task-manager.herokuapp.com/api/v1/tasks/15');
+    dd(json_decode($response->body()));
+    echo 'hi';
+});

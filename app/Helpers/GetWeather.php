@@ -3,6 +3,7 @@
 namespace App\Helpeers\GetWeather;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class Weather
 {
@@ -26,10 +27,12 @@ class Weather
     private function getWeather()
     {
         $response = Http::get("api.openweathermap.org/data/2.5/weather?q={$this->city}&appid={$this->wetherKey}");
+        Log::info('My city response: ' . PHP_EOL . json_decode($response->body()));
         if ($response->status() != 200) {
             $this->findCity = 0;
             $response =
                 Http::get("api.openweathermap.org/data/2.5/weather?q={$this->defaultCity}&appid={$this->wetherKey}");
+                Log::info('Default city response: ' . PHP_EOL . json_decode($response->body()));
         }
         $this->weather = json_decode($response->body());
     }
@@ -37,6 +40,9 @@ class Weather
     public function setSession()
     {
         $this->getWeather();
+
+        Log::info('Weather property: ' . PHP_EOL . json_decode($this->weather));
+
         if ($this->findCity == 1) {
             session()->put('weather', [
                 'find' => $this->findCity,
