@@ -2,17 +2,17 @@
     @if ($weather)
         @if ($weather['find'] == 1)
         <div class="col col-md-3">
-                <p>You city: {{$weather['city']}}</p>
+                <p>{{ __('weather_line.find_city') }}{{$weather['city']}}</p>
             </div>
             <div class="col col-md-3 text-right">
-                <p>Temperature on {{$weather['city']}}: {{$weather['temp']}}C</p>
+                <p>{{ __('weather_line.temp_on') }}{{$weather['city']}}: {{$weather['temp']}}C</p>
             </div>
         @elseif ($weather['find'] == 0)
-            <div class="col col-md-4 text-right">
-                You city not found on system. Info for: {{$weather['city']}}
+        <div class="col col-md-3">
+                <p>{{ __('weather_line.not_find_city') }}{{$weather['city']}}</p>
             </div>
-            <div class="col col-md-4">
-                Temp on {{ $weather['city'] }}: {{$weather['temp']}}C
+            <div class="col col-md-3 text-right">
+                <p>{{ __('weather_line.temp_on') }}{{ $weather['city'] }}: {{$weather['temp']}}C</p>
             </div>
         @endif
     @endif
