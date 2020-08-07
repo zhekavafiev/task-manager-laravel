@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('/tasks')->group(function () {
-    Route::get('/', 'ApiTaskController@getTasks');
-    Route::get('/{taskId}', 'ApiTaskController@getTask')->where(['taskId' => '[0-9]+']);
+    Route::get('/', 'API\TaskController@getTasks');
+    Route::get('/{taskId}', 'API\TaskController@getTask')->where(['taskId' => '[0-9]+']);
     Route::post('/', 'ApiTaskController@createTask');
     Route::delete('/{taskId}', 'ApiTaskController@deleteTask')->where(['taskId' => '[0-9]+']);
     Route::patch('/{taskId}', 'ApiTaskController@updateTask')->where(['taskId' => '[0-9]+']);
