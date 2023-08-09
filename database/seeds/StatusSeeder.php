@@ -1,6 +1,6 @@
 <?php
 
-use App\TaskStatus;
+use App\Model\TaskStatus;
 use Illuminate\Database\Seeder;
 
 class StatusSeeder extends Seeder

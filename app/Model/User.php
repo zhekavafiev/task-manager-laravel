@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,6 +38,6 @@ class User extends Authenticatable
 
     public function tasks()
     {
-        $this->hasMany('App\Task');
+        $this->hasMany('App\Model\Task');
     }
 }

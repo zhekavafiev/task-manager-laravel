@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\TaskStatus;
-use App\User;
+use App\Model\TaskStatus;
+use App\Model\User;
 use Tests\TestCase;
 
 class TaskStatusTest extends TestCase
@@ -14,7 +14,7 @@ class TaskStatusTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->status = factory(TaskStatus::class)->create();
         $this->user = factory(User::class)->create();
     }
@@ -66,18 +66,18 @@ class TaskStatusTest extends TestCase
             ->patch(route('task_statuses.update', $status), $data);
         $response->assertStatus(302);
         $response->assertSessionHasNoErrors();
-        
+
         $this->assertDatabaseHas('task_statuses', $data);
         $this->assertDatabaseMissing('task_statuses', [$status]);
     }
-    
+
     public function testDestroy()
     {
         $status = factory(TaskStatus::class)->create();
         $response = $this
             ->actingAs($this->user)
             ->delete(route('task_statuses.destroy', $status));
-        
+
         $response->assertStatus(302);
         $response->assertSessionHasNoErrors();
 

@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Task;
-use App\User;
+use App\Model\Task;
+use App\Model\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TaskPolicy
@@ -13,8 +13,9 @@ class TaskPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\User  $user
-     * @param  \App\Task  $task
+     * @param  \App\Model\User $user
+     * @param  \App\Model\Task $task
+     *
      * @return mixed
      */
     public function delete(User $user, Task $task)

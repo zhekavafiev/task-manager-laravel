@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Label;
-use App\Task;
+use App\Model\Label;
+use App\Model\Task;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -16,7 +16,7 @@ class TaskLabelController extends Controller
             'create', 'store', 'destroy', 'newConnection'
         ]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -50,7 +50,8 @@ class TaskLabelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Label  $label
+     * @param  \App\Model\Label $label
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Task $task, Label $label)
@@ -66,9 +67,9 @@ class TaskLabelController extends Controller
         $this->validate($request, [
             'label_id' => 'exists:App\Label,id'
         ]);
-        
+
         $label = Label::find($request->input()['label_id']);
-        
+
         try {
             $task->label()->attach($label);
             flash(__('flash.add_labels_to_task'))->success();

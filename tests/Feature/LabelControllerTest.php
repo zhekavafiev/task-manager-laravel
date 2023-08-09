@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Label;
-use App\Task;
-use App\User;
+use App\Model\Label;
+use App\Model\Task;
+use App\Model\User;
 use Tests\TestCase;
 
 class LabelControllerTest extends TestCase

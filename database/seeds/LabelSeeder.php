@@ -1,6 +1,6 @@
 <?php
 
-use App\Label;
+use App\Model\Label;
 use Illuminate\Database\Seeder;
 
 class LabelSeeder extends Seeder

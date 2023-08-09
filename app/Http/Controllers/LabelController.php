@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Label;
+use App\Model\Label;
 
 class LabelController extends Controller
 {

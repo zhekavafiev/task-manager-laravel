@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Task;
-use App\TaskStatus;
-use App\User;
+use App\Model\Task;
+use App\Model\TaskStatus;
+use App\Model\User;
 use Faker\Generator as Faker;
 
 $factory->define(Task::class, function (Faker $faker) {

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Label;
-use App\Task;
-use App\TaskStatus;
-use App\User;
+use App\Jobs\CreateNewTaskMail;
+use App\Model\Label;
+use App\Model\Task;
+use App\Model\TaskStatus;
+use App\Model\User;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use App\Jobs\CreateNewTaskMail;
-use Exception;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
 {

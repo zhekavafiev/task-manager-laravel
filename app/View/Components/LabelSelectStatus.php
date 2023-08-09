@@ -2,7 +2,7 @@
 
 namespace App\View\Components;
 
-use App\Task;
+use App\Model\Task;
 use Illuminate\View\Component;
 
 class LabelSelectStatus extends Component

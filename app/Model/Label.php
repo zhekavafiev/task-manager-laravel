@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Label extends Model
 
     public function task()
     {
-        return $this->belongsToMany('App\Task');
+        return $this->belongsToMany('App\Model\Task');
     }
 }

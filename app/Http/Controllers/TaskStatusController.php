@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TaskStatus;
+use App\Model\TaskStatus;
 use Illuminate\Http\Request;
 
 class TaskStatusController extends Controller
@@ -11,7 +11,7 @@ class TaskStatusController extends Controller
     {
         $this->middleware('auth')->except('index');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -45,18 +45,19 @@ class TaskStatusController extends Controller
         $data = $this->validate($request, [
             'name' => 'required|unique:task_statuses|max:255:'
         ]);
-                
+
         $status = new TaskStatus();
         $status->fill($data);
         $status->save();
         flash(__('flash.statuses_added'))->success();
         return redirect()->route('task_statuses.index');
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TaskStatus  $taskStatus
+     * @param  \App\Model\TaskStatus $taskStatus
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(TaskStatus $taskStatus)
@@ -68,8 +69,9 @@ class TaskStatusController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TaskStatus  $taskStatus
+     * @param  \Illuminate\Http\Request $request
+     * @param \App\Model\TaskStatus     $taskStatus
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, TaskStatus $taskStatus)
@@ -87,7 +89,8 @@ class TaskStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TaskStatus  $taskStatus
+     * @param \App\Model\TaskStatus $taskStatus
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(TaskStatus $taskStatus)

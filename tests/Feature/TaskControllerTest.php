@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Label;
-use App\Task;
-use App\User;
+use App\Model\Task;
+use App\Model\User;
 use Tests\TestCase;
 
 class TaskTest extends TestCase
@@ -65,7 +64,7 @@ class TaskTest extends TestCase
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
-        
+
         $this->assertDatabaseMissing('tasks', [$task]);
         $this->assertDatabaseHas('tasks', $newData);
     }
@@ -73,11 +72,11 @@ class TaskTest extends TestCase
     public function testDestroy()
     {
         $task = factory(Task::class)->create();
-        
+
         $response = $this
             ->actingAs($this->user)
             ->delete(route('tasks.destroy', $task));
-        
+
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
 

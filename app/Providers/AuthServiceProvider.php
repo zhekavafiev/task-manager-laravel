@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Label;
+use App\Model\Label;
 use App\Policies\LabelPolicy;
 use App\Policies\TaskPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
