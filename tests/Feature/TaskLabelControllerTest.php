@@ -7,7 +7,7 @@ use App\Model\Task;
 use App\Model\User;
 use Tests\TestCase;
 
-class LabelTest extends TestCase
+class TaskLabelControllerTest extends TestCase
 {
     protected $user;
     protected $task;
@@ -16,8 +16,8 @@ class LabelTest extends TestCase
     {
         parent::setUp();
         $this->artisan('db:seed');
-        $this->user = factory(User::class)->create();
-        $this->task = factory(Task::class)->create();
+        $this->user = User::factory()->create();
+        $this->task = Task::factory()->create();
     }
 
     public function testCreate()
@@ -43,7 +43,7 @@ class LabelTest extends TestCase
 
     public function testDestroy()
     {
-        $label = factory(Label::class)->create();
+        $label = Label::factory()->create();
         $this->task->label()->attach($label);
         $response = $this
             ->actingAs($this->user)

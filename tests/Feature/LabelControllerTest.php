@@ -13,13 +13,13 @@ class LabelControllerTest extends TestCase
     {
         parent::setUp();
         $this->artisan('db:seed');
-        $this->user = factory(User::class)->create();
-        $this->task = factory(Task::class)->create();
+        $this->user = User::factory()->create();
+        $this->task = Task::factory()->create();
     }
 
     public function testIndex()
     {
-        $user = factory(User::class)->create(['email' => 'admin@admin.admin']);
+        $user = User::factory()->create(['email' => 'admin@admin.admin']);
         $response = $this
             ->actingAs($user)
             ->get(route('labels.index'));
@@ -34,8 +34,8 @@ class LabelControllerTest extends TestCase
 
     public function testDestroy()
     {
-        $user = factory(User::class)->create(['email' => 'admin@admin.admin']);
-        $label = factory(Label::class)->create();
+        $user = User::factory()->create(['email' => 'admin@admin.admin']);
+        $label = Label::factory()->create();
         $this->task->label()->attach($label);
 
         $response = $this

@@ -2,10 +2,13 @@
 
 namespace App\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['name', 'status_id', 'description', 'assigned_to_id'];
 
     public function creator()

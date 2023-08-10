@@ -6,7 +6,7 @@ use App\Model\TaskStatus;
 use App\Model\User;
 use Tests\TestCase;
 
-class TaskStatusTest extends TestCase
+class TaskStatusControllerTest extends TestCase
 {
     protected $status;
     protected $user;
@@ -15,8 +15,8 @@ class TaskStatusTest extends TestCase
     {
         parent::setUp();
 
-        $this->status = factory(TaskStatus::class)->create();
-        $this->user = factory(User::class)->create();
+        $this->status = TaskStatus::factory()->create();
+        $this->user = User::factory()->create();
     }
 
     public function testIndex()
@@ -58,7 +58,7 @@ class TaskStatusTest extends TestCase
 
     public function testUpdate()
     {
-        $status = factory(TaskStatus::class)->create();
+        $status = TaskStatus::factory()->create();
         $data = ['name' => 'Example'];
         $this->withoutMiddleware();
         $response = $this
@@ -73,7 +73,7 @@ class TaskStatusTest extends TestCase
 
     public function testDestroy()
     {
-        $status = factory(TaskStatus::class)->create();
+        $status = TaskStatus::factory()->create();
         $response = $this
             ->actingAs($this->user)
             ->delete(route('task_statuses.destroy', $status));

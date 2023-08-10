@@ -19,7 +19,7 @@ class LabelSeeder extends Seeder
         ];
 
         foreach ($labels as [$color, $textColor, $text]) {
-            factory(Label::class)->create([
+            Label::factory()->create([
                 'color' => $color,
                 'text_color' => $textColor,
                 'text' => $text

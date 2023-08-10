@@ -13,12 +13,12 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $defaultStatus = 'New';
-        factory(TaskStatus::class)->create(['name' => $defaultStatus]);
+        TaskStatus::factory()->create(['name' => $defaultStatus]);
 
         $baseStatuses = ['In work', 'On testing', 'Finished'];
 
         foreach ($baseStatuses as $baseStatus) {
-            factory(TaskStatus::class)->create(['name' => $baseStatus]);
+            TaskStatus::factory()->create(['name' => $baseStatus]);
         }
     }
 }

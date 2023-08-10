@@ -6,7 +6,7 @@ use App\Model\Task;
 use App\Model\User;
 use Tests\TestCase;
 
-class TaskTest extends TestCase
+class TaskControllerTest extends TestCase
 {
     protected $user;
 
@@ -14,8 +14,8 @@ class TaskTest extends TestCase
     {
         parent::setUp();
         $this->artisan('db:seed');
-        $this->user = factory(User::class)->create();
-        factory(Task::class)->create();
+        $this->user = User::factory()->create();
+        Task::factory()->create();
     }
 
     public function testIndex()
@@ -34,7 +34,7 @@ class TaskTest extends TestCase
 
     public function testStore()
     {
-        $data = factory(Task::class)->make()->toArray();
+        $data = Task::factory()->make()->toArray();
         $response = $this
             ->actingAs($this->user)
             ->post(route('tasks.store', $data));
@@ -45,7 +45,7 @@ class TaskTest extends TestCase
 
     public function testEdit()
     {
-        $task = factory(Task::class)->create();
+        $task = Task::factory()->create();
         $response = $this
             ->actingAs($this->user)
             ->get(route('tasks.edit', $task));
@@ -54,9 +54,9 @@ class TaskTest extends TestCase
 
     public function testUpdate()
     {
-        $task = factory(Task::class)->create();
+        $task = Task::factory()->create();
 
-        $newData = factory(Task::class)->make()->toArray();
+        $newData = Task::factory()->make()->toArray();
 
         $response = $this
             ->actingAs($this->user)
@@ -71,7 +71,7 @@ class TaskTest extends TestCase
 
     public function testDestroy()
     {
-        $task = factory(Task::class)->create();
+        $task = Task::factory()->create();
 
         $response = $this
             ->actingAs($this->user)
