@@ -14,6 +14,7 @@ deploy:
 install:
 	docker-compose build
 	composer install
+	php artisan telescope:install
 	npm install
 	cp -n .env.example .env || true
 	php artisan config:cache

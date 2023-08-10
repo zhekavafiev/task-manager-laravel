@@ -28,7 +28,7 @@ services:
     image: mariadb:10.4
     environment:
       MYSQL_ROOT_PASSWORD: rootpasswd123
-      MYSQL_DATABASE: tascs
+      MYSQL_DATABASE: tasks
       MYSQL_USER: db_user
       MYSQL_PASSWORD: pwd123
     networks:
