@@ -7,11 +7,10 @@
 [Ссылка для ознакомления](https://evgvfv-task-manager.herokuapp.com/)
 
 ## Назначение
-Приложение разработано в учебных целях, для ознакомления с работой с фрейморком Ларавел, а так же их взаимодействия с СУБД PostgreSQL.
-Деплой приложений осуществлен с помощью PaaS Heroku.
+Приложение разработано в качестве pet проекта.
 
 ## Установка
-1. `git clone https://github.com/zhekavafiev/php-project-lvl4.git`
+1. `git clone https://github.com/zhekavafiev/task-manager-laravel.git`
 2. `make install` 
 
 Проверить работоспособность приложения можно, запустив локальный есервер `make server` или тесты `make test`.
