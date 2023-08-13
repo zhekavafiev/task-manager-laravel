@@ -65,7 +65,7 @@ class TaskLabelController extends Controller
     public function newConnection(Request $request, Task $task)
     {
         $this->validate($request, [
-            'label_id' => 'exists:App\Label,id'
+            'label_id' => 'exists:App\Model\Label,id'
         ]);
 
         $label = Label::find($request->input()['label_id']);

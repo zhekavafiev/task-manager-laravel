@@ -25,7 +25,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $table = 'task';
+    protected $table = 'tasks';
     protected $primaryKey = 'id';
 
     public const ID_COLUMN = 'id';
@@ -66,7 +66,7 @@ class Task extends Model
         return $this->belongsToMany(
             Label::class,
             self::LABEL_RELATION_TABLE,
-            self::LABEL_RELATION_TABLE,
+            self::LABEL_RELATION_TABLE_KEY,
             Label::TASK_RELATION_TABLE_KEY
         );
     }

@@ -9,7 +9,7 @@ class LabelPolicy
 {
     use HandlesAuthorization;
 
-    public function actionWithLabels(User $user)
+    public function actionWithLabels(User $user): bool
     {
         return $user->email === 'admin@admin.admin';
     }

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CreateTask;
 
-class CreateNewTaskMail implements ShouldQueue
+class CreateNewTaskMailJob implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -27,6 +27,7 @@ class CreateNewTaskMail implements ShouldQueue
     public function __construct($task)
     {
         $this->task = $task;
+        $this->onQueue('taskAssignerSendMail');
     }
 
     /**

@@ -21,7 +21,7 @@ class Label extends Model
 {
     use HasFactory;
 
-    protected $table = 'label';
+    protected $table = 'labels';
     protected $primaryKey = 'id';
 
     public const ID_COLUMN = 'id';

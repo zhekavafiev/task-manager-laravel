@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\CreateNewTaskMail;
+use App\Jobs\CreateNewTaskMailJob;
 use App\Model\Label;
 use App\Model\Task;
 use App\Model\TaskStatus;
@@ -87,7 +87,7 @@ class TaskController extends Controller
         flash(__('flash.tasks_added'))->success();
 
         if ($task->assigner) {
-            CreateNewTaskMail::dispatch($task);
+//            CreateNewTaskMailJob::dispatch($task);
         }
         return redirect()->route('tasks.index');
     }

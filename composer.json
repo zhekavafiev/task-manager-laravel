@@ -18,7 +18,8 @@
         "laravelcollective/html": "^6.1",
         "rollbar/rollbar": "^4.0",
         "rollbar/rollbar-laravel": "v8.0.0",
-        "spatie/laravel-query-builder": "^5.0.0"
+        "spatie/laravel-query-builder": "^5.0.0",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",

@@ -26,7 +26,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
-    protected $table = 'user';
+    protected $table = 'users';
     protected $primaryKey = 'id';
 
     public const ID_COLUMN = 'id';

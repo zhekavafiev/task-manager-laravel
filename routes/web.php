@@ -34,15 +34,18 @@ Route::resource('/task_statuses', 'TaskStatusController');
 
 Route::resource('/tasks', 'TaskController');
 
-Route::resource('/labels', 'LabelController')->only(['index', 'destroy']);
+Route::group(['prefix' => 'labels'], function () {
+    Route::get('/', 'Label\LabelsShowController@index')->name('labels.index');
+    Route::delete('/', 'Label\LabelDestroyController@index')->name('labels.destroy');
+});
+//Route::resource('/labels', '\Label\abelsShowController')->only(['index', 'destroy']);
 
 Route::post('/tasks/{task}/labels/newconnection', 'TaskLabelController@newConnection')
     ->name('tasks.labels.newconnection');
-    
+
 Route::resource('/tasks.labels', 'TaskLabelController');
 
 Route::get('test', function () {
-    $response = Http::get('http://evgvfv-task-manager.herokuapp.com/api/v1/tasks/15');
-    dd(json_decode($response->body()));
-    echo 'hi';
+    $task = \App\Model\Task::first();
+    \App\Jobs\CreateNewTaskMailJob::dispatch($task);
 });

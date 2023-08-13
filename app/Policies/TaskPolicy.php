@@ -18,7 +18,7 @@ class TaskPolicy
      *
      * @return mixed
      */
-    public function delete(User $user, Task $task)
+    public function delete(User $user, Task $task): bool
     {
         return $user->id === $task->creator_by_id;
     }
