@@ -19,6 +19,32 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Model\Task> $tasks
  * @property-read int|null $tasks_count
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $remember_token
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $second_name
+ * @property string $birthday
+ * @property string $country
+ * @property string|null $city
+ * @property int $user_role_id
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBirthday($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereSecondName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUserRoleId($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -37,6 +63,9 @@ class User extends Authenticatable
     public const REMEMBER_TOKEN_COLUMN = 'password';
     public const CREATED_AT_COLUMN = 'created_at';
     public const UPDATED_AT_COLUMN = 'updated_at';
+
+    public const ADMIN_ROLE = 1;
+    public const USER_ROLE = 2;
 
     protected $fillable = [
         self::NAME_COLUMN,
@@ -70,5 +99,10 @@ class User extends Authenticatable
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class, Task::CREATOR_BY_ID_COLUMN, self::ID_COLUMN);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->user_role_id === self::ADMIN_ROLE;
     }
 }

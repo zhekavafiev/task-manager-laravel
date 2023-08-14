@@ -23,10 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(\Rollbar\Laravel\RollbarServiceProvider::class);
-        
+
         if ($this->app->isLocal()) {
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
     }
 

@@ -28,8 +28,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::middleware(['auth'])->get('/users', 'UserController@index')->name('users');
-
 Route::resource('/task_statuses', 'TaskStatusController');
 
 Route::resource('/tasks', 'TaskController');
@@ -38,7 +36,17 @@ Route::group(['prefix' => 'labels'], function () {
     Route::get('/', 'Label\LabelsShowController@index')->name('labels.index');
     Route::delete('/', 'Label\LabelDestroyController@index')->name('labels.destroy');
 });
-//Route::resource('/labels', '\Label\abelsShowController')->only(['index', 'destroy']);
+
+Route::group(
+    [
+        'prefix' => 'profile',
+        'middleware' => 'auth'
+    ],
+    function () {
+        Route::get('/users', 'User\UsersListController@index')->name('users.index');
+        Route::get('/users/{user_id}', 'User\UserController@show')->name('users.show');
+        Route::delete('/', 'Label\LabelDestroyController@index')->name('labels.destroy');
+});
 
 Route::post('/tasks/{task}/labels/newconnection', 'TaskLabelController@newConnection')
     ->name('tasks.labels.newconnection');

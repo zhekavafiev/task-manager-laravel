@@ -25,7 +25,7 @@
                             <a class="nav-link" href="{{ route('home') }}">{{__('header.home')}}<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('users') }}">{{__('header.users')}}<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{ route('users.index') }}">{{__('header.users')}}<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('task_statuses.index') }}">{{__('header.statuses')}}</a>
@@ -36,7 +36,7 @@
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
-                        
+
                         <!-- Set language -->
 
                         <li class="nav-item dropdown">
@@ -48,7 +48,7 @@
                         </li>
 
                         <!-- Authentication Links -->
-                        
+
                         @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{__('header.login')}}</a>
