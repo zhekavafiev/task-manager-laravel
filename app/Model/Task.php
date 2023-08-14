@@ -19,6 +19,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Task newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Task newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Task query()
+ * @property int $id
+ * @property string $name
+ * @property string|null $description
+ * @property int|null $status_id
+ * @property int $creator_by_id
+ * @property int|null $assigned_to_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereAssignedToId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereCreatorById($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereStatusId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Task extends Model

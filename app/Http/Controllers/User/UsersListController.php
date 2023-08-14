@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Model\User;
 
-class UserController extends Controller
+class UsersListController extends Controller
 {
     public function index()
     {

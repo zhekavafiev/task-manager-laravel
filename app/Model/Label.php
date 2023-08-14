@@ -15,6 +15,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Label newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Label newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Label query()
+ * @property int $id
+ * @property string $color
+ * @property string $text_color
+ * @property string $text
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Label whereTextColor($value)
  * @mixin \Eloquent
  */
 class Label extends Model

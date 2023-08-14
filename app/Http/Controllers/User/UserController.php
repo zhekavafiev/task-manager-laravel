@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Http\Controllers\User;
+
+use App\Http\Controllers\Controller;
+use App\Model\User;
+use App\Services\User\UserInformationService;
+
+class UserController extends Controller
+{
+    private UserInformationService $userInformationService;
+
+    public function __construct(UserInformationService $userInformationService)
+    {
+        $this->userInformationService = $userInformationService;
+    }
+
+    public function show(int $userId)
+    {
+        $user = $this->userInformationService->get($userId);
+        $user = $user->jsonSerialize();
+        return view('users.show', compact('user'));
+    }
+}

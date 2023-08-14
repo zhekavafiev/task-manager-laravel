@@ -11,6 +11,6 @@ class LabelPolicy
 
     public function actionWithLabels(User $user): bool
     {
-        return $user->email === 'admin@admin.admin';
+        return $user->isAdmin();
     }
 }
