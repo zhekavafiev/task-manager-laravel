@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereStatusId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereUpdatedAt($value)
+ * @property int $team_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereTeamId($value)
  * @mixin \Eloquent
  */
 class Task extends Model
@@ -50,6 +52,7 @@ class Task extends Model
     public const STATUS_ID_COLUMN = 'status_id';
     public const CREATOR_BY_ID_COLUMN = 'creator_by_id';
     public const ASSIGNED_BY_ID_COLUMN = 'assigned_to_id';
+    public const TEAM_ID_COLUMN = 'team_id';
 
     public const LABEL_RELATION_TABLE = 'label_task';
     public const LABEL_RELATION_TABLE_KEY = 'task_id';
@@ -86,4 +89,10 @@ class Task extends Model
             Label::TASK_RELATION_TABLE_KEY
         );
     }
+
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, self::TEAM_ID_COLUMN, TEam::ID_COLUMN);
+    }
+
 }

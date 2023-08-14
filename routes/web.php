@@ -48,6 +48,21 @@ Route::group(
         Route::delete('/', 'Label\LabelDestroyController@index')->name('labels.destroy');
 });
 
+
+Route::group(
+    [
+        'prefix' => 'team',
+        'middleware' => 'auth'
+    ],
+    function () {
+        Route::get('/', 'Team\TeamListController@index')->name('team.index');
+        Route::get('/create', 'Team\TeamFormController@create')->name('team.create');
+        Route::post('/create', 'Team\TeamStoreController@store')->name('team.store');
+
+//        Route::get('/users/{user_id}', 'User\UserController@show')->name('users.show');
+//        Route::delete('/', 'Label\LabelDestroyController@index')->name('labels.destroy');
+    });
+
 Route::post('/tasks/{task}/labels/newconnection', 'TaskLabelController@newConnection')
     ->name('tasks.labels.newconnection');
 

@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereSecondName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserRoleId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Model\Team> $teams
+ * @property-read int|null $teams_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -66,6 +69,9 @@ class User extends Authenticatable
 
     public const ADMIN_ROLE = 1;
     public const USER_ROLE = 2;
+
+    public const TEAM_RELATION_TABLE = 'team_user';
+    public const TEAM_RELATION_TABLE_KEY = 'user_id';
 
     protected $fillable = [
         self::NAME_COLUMN,
@@ -104,5 +110,15 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->user_role_id === self::ADMIN_ROLE;
+    }
+
+    public function teams(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Team::class,
+            self::TEAM_RELATION_TABLE,
+            self::TEAM_RELATION_TABLE_KEY,
+            Team::USER_RELATION_TABLE_KEY
+        );
     }
 }
