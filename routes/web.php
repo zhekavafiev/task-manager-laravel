@@ -68,7 +68,7 @@ Route::post('/tasks/{task}/labels/newconnection', 'TaskLabelController@newConnec
 
 Route::resource('/tasks.labels', 'TaskLabelController');
 
-Route::get('test', function () {
-    $task = \App\Model\Task::first();
-    \App\Jobs\CreateNewTaskMailJob::dispatch($task);
+Route::post('test', function (\Illuminate\Http\Request $request) {
+    dd($request->files);
+
 });

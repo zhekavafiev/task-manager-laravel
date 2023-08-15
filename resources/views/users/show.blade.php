@@ -2,4 +2,5 @@
 
 @section('content')
     {{ dd($user) }}
+
 @endsection
