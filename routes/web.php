@@ -69,6 +69,7 @@ Route::post('/tasks/{task}/labels/newconnection', 'TaskLabelController@newConnec
 Route::resource('/tasks.labels', 'TaskLabelController');
 
 Route::post('test', function (\Illuminate\Http\Request $request) {
-    dd($request->files);
-
+//    dd(Storage::allFiles());
+//    dd($request->file('file'));
+    dd(Storage::put('test', $request->file('file')));
 });

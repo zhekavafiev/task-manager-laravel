@@ -57,14 +57,21 @@ return [
 
         's3' => [
             'driver' => 's3',
+            'use_path_style_endpoint' => true,
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
-
+        'minio' => [
+            'driver' => 'minio',
+            'key' => env('MINIO_ACCESS_KEY_ID', 'your minio server key'),
+            'secret' => env('MINIO_SECRET_ACCESS_KEY', 'your minio server secret'),
+            'region' => env('MINIO_DEFAULT_REGION', 'us-east-1'),
+            'bucket' => env('MINIO_BUCKET','test'),
+            'endpoint' => env('MINIO_ENDPOINT','http://localhost:9000')
+        ],
     ],
 
     /*
