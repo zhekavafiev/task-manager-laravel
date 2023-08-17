@@ -18,6 +18,7 @@ final class UserInformationService
             $user->id,
             $user->name,
             $user->email,
+            $user->avatar,
         );
     }
 }

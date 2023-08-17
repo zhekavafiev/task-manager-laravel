@@ -22,7 +22,7 @@ services:
     networks:
       - backend
     environment:
-      PHP_IDE_CONFIG: serverName=app
+      PHP_IDE_CONFIG: serverName=taskManager
       XDEBUG_CONFIG: "remote_host=php remote_enable=1"
   database:
     image: mariadb:10.4

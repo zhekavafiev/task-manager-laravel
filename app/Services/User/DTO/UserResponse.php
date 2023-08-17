@@ -9,7 +9,8 @@ final readonly class UserResponse implements JsonSerializable
     public function __construct(
         private int $id,
         private string $name,
-        private string $email
+        private string $email,
+        private ?string $avatar
     )
     {
     }
@@ -32,5 +33,10 @@ final readonly class UserResponse implements JsonSerializable
     public function jsonSerialize(): array
     {
         return get_object_vars($this);
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
     }
 }

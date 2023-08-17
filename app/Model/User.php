@@ -61,6 +61,7 @@ class User extends Authenticatable
     public const ID_COLUMN = 'id';
     public const NAME_COLUMN = 'name';
     public const EMAIL_COLOR_COLUMN = 'email';
+    public const AVATAR_COLUMN = 'avatar';
     public const EMAIL_VERIFIED_AT_COLUMN = 'email_verified_at';
     public const PASSWORD_COLUMN = 'password';
     public const REMEMBER_TOKEN_COLUMN = 'password';
@@ -76,6 +77,7 @@ class User extends Authenticatable
     protected $fillable = [
         self::NAME_COLUMN,
         self::EMAIL_COLOR_COLUMN,
+        self::AVATAR_COLUMN,
         self::EMAIL_VERIFIED_AT_COLUMN,
         self::PASSWORD_COLUMN,
         self::REMEMBER_TOKEN_COLUMN,
