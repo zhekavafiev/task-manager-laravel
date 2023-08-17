@@ -14,7 +14,7 @@ final class AvatarService
     public function handle(AvatarRequest $avatarRequest)
     {
         \Storage::allFiles();
-        $result = \Storage::put('test/avatar', $avatarRequest->getAvatar());
+        $result = \Storage::put('avatar/user/image', $avatarRequest->getAvatar());
         if (!$result) {
             return;
         }

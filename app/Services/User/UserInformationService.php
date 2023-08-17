@@ -18,7 +18,7 @@ final class UserInformationService
             $user->id,
             $user->name,
             $user->email,
-            $user->avatar,
+            'http://127.0.0.1:9000' . '/avatar/' . $user->avatar,
         );
     }
 }

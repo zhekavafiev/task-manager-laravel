@@ -14,8 +14,8 @@
                             </div>
                         @endif
                         You are logged in!
-                        <img src="{{ Storage::disk('s3')->url($user['avatar']) }}">
-{{--                        <img class="image rounded-circle" src="{{asset($user['avatar'])}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">--}}
+                        <img src="{{$user['avatar']}}">
+{{--                        <img class="image rounded-circle" src="{{$user['avatar']}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">--}}
                     </div>
                     <div class="card-body">
                         <form action="{{ route('users.store.avatar', ['user_id' => $user['id']]) }}" method="POST" enctype="multipart/form-data">
