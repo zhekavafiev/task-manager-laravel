@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+{{--    {{ dd($user) }}--}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -14,8 +15,7 @@
                             </div>
                         @endif
                         You are logged in!
-                        <img src="{{$user['avatar']}}">
-{{--                        <img class="image rounded-circle" src="{{$user['avatar']}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">--}}
+                        <img class="image rounded-circle" src="{{$user['avatar']}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
                     </div>
                     <div class="card-body">
                         <form action="{{ route('users.store.avatar', ['user_id' => $user['id']]) }}" method="POST" enctype="multipart/form-data">
