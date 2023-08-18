@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereUpdatedAt($value)
  * @property int $team_id
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereTeamId($value)
+ * @property-read \App\Model\Team $team
  * @mixin \Eloquent
  */
 class Task extends Model
@@ -92,7 +93,7 @@ class Task extends Model
 
     public function team(): BelongsTo
     {
-        return $this->belongsTo(Team::class, self::TEAM_ID_COLUMN, TEam::ID_COLUMN);
+        return $this->belongsTo(Team::class, self::TEAM_ID_COLUMN, Team::ID_COLUMN);
     }
 
 }

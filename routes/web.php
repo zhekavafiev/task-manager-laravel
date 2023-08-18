@@ -40,13 +40,14 @@ Route::group(['prefix' => 'labels'], function () {
 Route::group(
     [
         'prefix' => 'profile',
-        'middleware' => 'auth'
+//        'middleware' => 'auth'
     ],
     function () {
         Route::get('/users', 'User\UsersListController@index')->name('users.index');
         Route::get('/users/{user_id}', 'User\UserController@show')->name('users.show');
-        Route::delete('/', 'Label\LabelDestroyController@index')->name('labels.destroy');
-});
+        Route::post('/users/{user_id}/avatar', 'User\UploadAvatarController@store')->name('users.store.avatar');
+        Route::delete('/', 'Label\LabelDestroyController@index')->name('users.destroy');
+    });
 
 
 Route::group(
@@ -68,7 +69,8 @@ Route::post('/tasks/{task}/labels/newconnection', 'TaskLabelController@newConnec
 
 Route::resource('/tasks.labels', 'TaskLabelController');
 
-Route::get('test', function () {
-    $task = \App\Model\Task::first();
-    \App\Jobs\CreateNewTaskMailJob::dispatch($task);
+Route::post('test', function (\Illuminate\Http\Request $request) {
+//    dd(Storage::allFiles());
+//    dd($request->file('file'));
+    dd(Storage::put('test', $request->file('file')));
 });
