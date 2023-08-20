@@ -15,7 +15,7 @@ class CreateNewColumnOnUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('second_name')->nullable();
-            $table->date('birthday')->default('1900-01-01');
+            $table->date('birthday')->nullable(true)->default(null);
             $table->string('country')->default('Russia');
             $table->string('city')->nullable();
 

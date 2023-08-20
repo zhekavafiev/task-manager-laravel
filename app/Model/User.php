@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use App\Events\UserRegisterEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -34,17 +33,36 @@ use Illuminate\Notifications\Notifiable;
  * @property string $country
  * @property string|null $city
  * @property int $user_role_id
+ * @property string|null $avatar
+ * @property string|null $phone
+ * @property string|null $telegram
+ * @property string|null $github
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property-read int|null $notifications_count
+ * @property-read \App\Model\UserRole|null $role
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Model\Task> $tasks
+ * @property-read int|null $tasks_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Model\Team> $teams
+ * @property-read int|null $teams_count
+ * @method static \Database\Factories\Model\UserFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAvatar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereBirthday($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereGithub($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereSecondName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTelegram($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserRoleId($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Model\Team> $teams
@@ -64,10 +82,19 @@ class User extends Authenticatable
 
     public const ID_COLUMN = 'id';
     public const NAME_COLUMN = 'name';
-    public const EMAIL_COLOR_COLUMN = 'email';
-    public const EMAIL_VERIFIED_AT_COLUMN = 'email_verified_at';
+    public const SECOND_COLUMN = 'second_name';
+    public const EMAIL_COLUMN = 'email';
+    public const PHONE_COLUMN = 'phone';
+    public const TELEGRAM_COLUMN = 'telegram';
+    public const GITHUB_COLUMN = 'github';
+    public const COUNTRY_COLUMN = 'country';
+    public const CITY_COLUMN = 'city';
+    public const AVATAR_COLUMN = 'avatar';
+    public const USER_ROLE_ID_COLUMN = 'user_role_id';
     public const PASSWORD_COLUMN = 'password';
-    public const REMEMBER_TOKEN_COLUMN = 'password';
+    public const REMEMBER_TOKEN_COLUMN = 'remember_token';
+    public const EMAIL_VERIFIED_AT_COLUMN = 'email_verified_at';
+    public const BIRTHDAY_COLUMN = 'birthday';
     public const CREATED_AT_COLUMN = 'created_at';
     public const UPDATED_AT_COLUMN = 'updated_at';
 
@@ -79,10 +106,19 @@ class User extends Authenticatable
 
     protected $fillable = [
         self::NAME_COLUMN,
-        self::EMAIL_COLOR_COLUMN,
-        self::EMAIL_VERIFIED_AT_COLUMN,
+        self::SECOND_COLUMN,
+        self::EMAIL_COLUMN,
+        self::PHONE_COLUMN,
+        self::TELEGRAM_COLUMN,
+        self::GITHUB_COLUMN,
+        self::COUNTRY_COLUMN,
+        self::CITY_COLUMN,
+        self::AVATAR_COLUMN,
+        self::USER_ROLE_ID_COLUMN,
         self::PASSWORD_COLUMN,
         self::REMEMBER_TOKEN_COLUMN,
+        self::EMAIL_VERIFIED_AT_COLUMN,
+        self::BIRTHDAY_COLUMN
     ];
 
     /**
@@ -101,6 +137,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+        self::BIRTHDAY_COLUMN => 'datetime',
         self::EMAIL_VERIFIED_AT_COLUMN => 'datetime',
         self::CREATED_AT_COLUMN => 'datetime',
         self::UPDATED_AT_COLUMN => 'datetime',
@@ -124,5 +161,15 @@ class User extends Authenticatable
             self::TEAM_RELATION_TABLE_KEY,
             Team::USER_RELATION_TABLE_KEY
         );
+    }
+
+    public function role(): HasOne
+    {
+        return $this->hasOne(UserRole::class, self::USER_ROLE_ID_COLUMN, UserRole::ID_COLUMN);
+    }
+
+    public function avatar()
+    {
+        return ImageFullPathGetter::getFullPath('avatar/' . $this->avatar);
     }
 }
