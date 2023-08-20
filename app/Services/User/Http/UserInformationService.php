@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Services\User\Http;
 
 use App\Model\User;
-use App\Services\User\DTO\UserResponse;
+use App\Services\User\Http\DTO\UserResponse;
 
 final class UserInformationService
 {

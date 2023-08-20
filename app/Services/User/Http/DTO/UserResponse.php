@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User\DTO;
+namespace App\Services\User\Http\DTO;
 
 use JsonSerializable;
 

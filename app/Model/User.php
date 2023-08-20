@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Events\UserRegisterEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -53,7 +54,10 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory;
-    use Notifiable;
+
+    protected $dispatchesEvents = [
+        'created' => UserRegisterEvent::class,
+    ];
 
     protected $table = 'users';
     protected $primaryKey = 'id';

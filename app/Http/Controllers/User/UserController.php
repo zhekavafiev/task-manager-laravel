@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Model\User;
-use App\Services\User\UserInformationService;
+use App\Services\User\Http\UserInformationService;
 
 class UserController extends Controller
 {
