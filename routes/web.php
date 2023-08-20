@@ -46,8 +46,8 @@ Route::group(
         Route::get('/users', 'User\UsersListController@index')->name('users.index');
         Route::get('/users/{user_id}', 'User\UserController@show')->name('users.show');
         Route::post('/users/{user_id}/avatar', 'User\UploadAvatarController@store')->name('users.store.avatar');
-        Route::patch('/', '')->name('users.update');
-        Route::delete('/', '')->name('users.destroy');
+//        Route::patch('/', '')->name('users.update');
+//        Route::delete('/', '')->name('users.destroy');
     });
 
 

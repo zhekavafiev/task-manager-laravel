@@ -2,24 +2,18 @@
 
 namespace App\Model;
 
+use App\Events\UserRegisterEvent;
+use App\Helpers\ImageFullPathGetter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
 
 /**
  * App\Model\User
  *
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read int|null $notifications_count
- * @method static \Database\Factories\Model\UserFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Model\Task> $tasks
- * @property-read int|null $tasks_count
  * @property int $id
  * @property string $name
  * @property string $email
@@ -29,7 +23,7 @@ use Illuminate\Notifications\Notifiable;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $second_name
- * @property string $birthday
+ * @property \Illuminate\Support\Carbon $birthday
  * @property string $country
  * @property string|null $city
  * @property int $user_role_id
@@ -37,9 +31,6 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null $phone
  * @property string|null $telegram
  * @property string|null $github
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read int|null $notifications_count
- * @property-read \App\Model\UserRole|null $role
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Model\Task> $tasks
  * @property-read int|null $tasks_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Model\Team> $teams
@@ -65,8 +56,6 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTelegram($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserRoleId($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Model\Team> $teams
- * @property-read int|null $teams_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -168,7 +157,7 @@ class User extends Authenticatable
         return $this->hasOne(UserRole::class, self::USER_ROLE_ID_COLUMN, UserRole::ID_COLUMN);
     }
 
-    public function avatar()
+    public function avatar(): string
     {
         return ImageFullPathGetter::getFullPath('avatar/' . $this->avatar);
     }
