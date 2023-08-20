@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Services\User\Avatar;
 
 use App\Model\User;
-use App\Services\User\DTO\AvatarRequest;
+use App\Services\User\Avatar\DTO\AvatarRequest;
 use Storage;
 
 final class AvatarService

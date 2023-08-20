@@ -25,8 +25,11 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
+Route::post('/register', 'User\RegisterController@register')->name('register.store');
+Route::get('/register', 'User\RegisterFormController@form')->name('register.show');
+Route::get('/login', 'User\LoginFormController@form')->name('login.show');
+Route::post('/login', 'User\LoginController@login')->name('login');
+Route::post('/logout', 'User\LogoutController@login')->name('logout');
 
 Route::resource('/task_statuses', 'TaskStatusController');
 
@@ -70,8 +73,8 @@ Route::post('/tasks/{task}/labels/newconnection', 'TaskLabelController@newConnec
 
 Route::resource('/tasks.labels', 'TaskLabelController');
 
-Route::post('test', function (\Illuminate\Http\Request $request) {
-//    dd(Storage::allFiles());
-//    dd($request->file('file'));
-    dd(Storage::put('test', $request->file('file')));
+Route::get('test', function (\Illuminate\Http\Request $request) {
+    \App\Model\User::find(3)->update([
+        'password' => Hash::make('12345678')
+    ]);
 });

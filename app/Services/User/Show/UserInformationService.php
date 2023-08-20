@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\User\Http;
+namespace App\Services\User\Show;
 
 use App\Helpers\ImageFullPathGetter;
 use App\Model\User;
-use App\Services\User\Http\DTO\UserResponse;
+use App\Services\User\Show\DTO\UserResponse;
 
 final class UserInformationService
 {

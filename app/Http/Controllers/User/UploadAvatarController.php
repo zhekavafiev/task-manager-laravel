@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Services\User\AvatarService;
-use App\Services\User\DTO\AvatarRequest;
+use App\Services\User\Avatar\AvatarService;
+use App\Services\User\Avatar\DTO\AvatarRequest;
 use App\Services\User\UserInformationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
