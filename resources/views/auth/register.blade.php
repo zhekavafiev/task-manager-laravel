@@ -9,7 +9,7 @@
                 <div class="card-header bg-dark text-white">{{__('register.register')}}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register.store') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -81,7 +81,7 @@
 
                             <div class="col col-md-4">
                                 <input id="birtday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" required autocomplete="birthday">
-                                
+
                                 @error('birthday')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

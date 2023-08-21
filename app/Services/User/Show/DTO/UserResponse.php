@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User\Http\DTO;
+namespace App\Services\User\Show\DTO;
 
 use Carbon\Carbon;
 use JsonSerializable;

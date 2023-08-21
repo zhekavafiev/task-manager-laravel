@@ -2,16 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Mail\CreateTask;
 use App\Model\User;
-use App\Services\User\Jobs\NotificatorFactory;
+use App\Services\User\Jobs\Motification\NotificatorFactory;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class UserCreatedNotificationJob implements ShouldQueue
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User\Jobs;
+namespace App\Services\User\Jobs\Motification;
 
 use App\Model\User;
 
