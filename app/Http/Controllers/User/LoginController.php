@@ -29,7 +29,7 @@ class LoginController extends Controller
         if (empty($user)) {
             return redirect()->back();
         }
-//        dd($user, $request->get('password'), Hash::check($request->get('password'), $user->password));
+
         if (!Hash::check($request->get('password'), $user->password)) {
             return redirect()->back();
         }

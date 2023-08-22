@@ -56,6 +56,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTelegram($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserRoleId($value)
+ * @property-read \App\Model\UserRole|null $role
  * @mixin \Eloquent
  */
 class User extends Authenticatable

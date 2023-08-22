@@ -1,19 +1,12 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Http\Controllers\User;
 
-use App\Model\Label;
-use App\Model\Task;
 use App\Model\User;
 use Tests\TestCase;
 
 class RegisterControllerTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     public function testNoData()
     {
         $response = $this
