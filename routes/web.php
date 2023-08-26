@@ -57,7 +57,7 @@ Route::group(
 Route::group(
     [
         'prefix' => 'team',
-        'middleware' => 'auth'
+//        'middleware' => 'auth'
     ],
     function () {
         Route::get('/', 'Team\TeamListController@index')->name('team.index');
