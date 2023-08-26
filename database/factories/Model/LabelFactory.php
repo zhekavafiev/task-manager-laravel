@@ -22,7 +22,9 @@ class LabelFactory extends Factory
     public function definition(): array
     {
         return [
-            'text' => $this->faker->text(5, 7),
+            'text' => $this->faker->word,
+            'text_color' => $this->faker->hexColor,
+            'color' => $this->faker->hexColor,
         ];
     }
 }

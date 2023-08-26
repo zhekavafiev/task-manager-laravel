@@ -4,15 +4,11 @@ namespace App\Http\Controllers\Team;
 
 use App\Http\Controllers\Controller;
 use App\Model\Team;
+use Illuminate\View\View;
 
 class TeamFormController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
         $team = new Team();
         return view('team.create', compact('team'));

@@ -24,11 +24,12 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
-            'description' => $this->faker->text(rand(60, 100)),
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
             'status_id' => TaskStatus::factory()->create(),
             'creator_by_id' => User::factory()->create(),
             'assigned_to_id' => User::factory()->create(),
+            'team_id' => null,
         ];
     }
 }

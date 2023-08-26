@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Team;
 use App\Services\Team\CreateTeamService;
 use App\Services\Team\DTO\CreateTeamRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -21,7 +22,7 @@ class TeamStoreController extends Controller
     /**
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->check($request->all());
         $this->createTeamService->create(new CreateTeamRequest(
