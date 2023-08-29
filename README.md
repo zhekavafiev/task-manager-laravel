@@ -13,6 +13,9 @@
 1. `git clone https://github.com/zhekavafiev/task-manager-laravel.git`
 2. `make install` 
 
+### Создание фейковых данных в базе
+```php artisan create:baseDatabaseData```
+
 Проверить работоспособность приложения можно, запустив локальный есервер `make server` или тесты `make test`.
 
 ## Создание PHPDoc моделям
